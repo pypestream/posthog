@@ -8,7 +8,6 @@ import clsx from 'clsx'
 import { Popover } from 'lib/lemon-ui/Popover/Popover'
 import { breadcrumbsLogic } from '~/layout/navigation/Breadcrumbs/breadcrumbsLogic'
 import { LemonButton } from '@posthog/lemon-ui'
-import { NewInsightButton } from 'scenes/saved-insights/SavedInsights'
 import { NotebookButton } from '~/layout/navigation/TopBar/NotebookButton'
 import { FlaggedFeature } from 'lib/components/FlaggedFeature'
 import { FEATURE_FLAGS } from 'lib/constants'
@@ -30,13 +29,11 @@ export function Breadcrumbs(): JSX.Element | null {
                     <Breadcrumb breadcrumb={breadcrumb} index={index + 1} here={index === tailBreadcrumbs.length - 1} />
                 </React.Fragment>
             ))}
-            {/* TODO: These buttons below are hardcoded right now, scene-based system coming in the next PR */}
             <LemonButton className="Breadcrumbs3000__more" icon={<IconEllipsisVertical />} size="small" />
             <div className="Breadcrumbs3000__actions">
                 <FlaggedFeature flag={FEATURE_FLAGS.NOTEBOOKS} match={true}>
                     <NotebookButton />
                 </FlaggedFeature>
-                <NewInsightButton dataAttr="project-home-new-insight" />
             </div>
         </div>
     ) : null
