@@ -1,6 +1,7 @@
 import { StatsD } from 'hot-shots'
 
 import { PluginsServerConfig } from '../../types'
+import { status } from '../../utils/status'
 
 export class PromiseManager {
     pendingPromises: Set<Promise<any>>
@@ -13,16 +14,19 @@ export class PromiseManager {
         this.statsd = statsd
     }
 
-    public trackPromise(promise: Promise<any>): void {
+    public trackPromise(promise: Promise<any>, key: string): void {
         if (typeof promise === 'undefined') {
             return
         }
 
+        status.info('🤝', `Tracking promise ${key}`)
+        this.statsd?.increment(`worker_promise_manager_promise_start`, { key })
         this.pendingPromises.add(promise)
 
         promise.finally(() => {
             this.pendingPromises.delete(promise)
         })
+        this.statsd?.increment(`worker_promise_manager_promise_end`, { key })
     }
 
     public async awaitPromisesIfNeeded(): Promise<void> {
