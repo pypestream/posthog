@@ -1,31 +1,33 @@
-There are many ways to contribute to PostHog. We want to help developers know exactly how users are interacting with their stuff, in a way that doesn't send data to 3rd parties.
+# Contributing to PostHog
 
-# Creating a PR
+Thank you for your interest in contributing to PostHog! We welcome contributions from everyone.
 
-Just create a new pull request if you want to make an update.
+## How to contribute
 
-For now, please request Tim (tim@posthog.com) to do the QA.
+There are many ways in which you can contribute:
 
-If you want to speak to us before doing lots of work, just email hey@posthog.com - we're very responsive and friendly!
+### Report a bug
 
-# Issues
+If you find a bug or issue with PostHog, please report it as a [GitHub issue](https://github.com/PostHog/posthog/issues/new?assignees=&labels=bug&projects=&template=bug_report.md). Include as much detail as possible, including steps to reproduce the issue.
 
-Spotted a bug? Has deployment gone wrong? Do you have user feedback? Raise an issue for the fastest response.
+### Submit a feature request
 
-... or pick up and fix an issue if you want to do a Pull Request.
+If you have an idea for a new feature or improvement to PostHog, please submit it as a [GitHub issue](https://github.com/PostHog/posthog/issues/new?assignees=&labels=enhancement%2C+feature&projects=&template=feature_request.md).
 
-## Issues with paid features
+### Updating documentation
 
-We prefer not to accept external contributions for paid features. If you don't see the feature on your local build, it's most probably paid.
+If you see something that needs improvement in the documentation or would like to add new docs, please create a pull request in the [posthog.com repository](https://github.com/posthog/posthog.com).
 
-# Feature requests
+### Submitting pull requests
 
-Raise an issue for these and tag it as an Enhancement. We love every idea. Please give us as much context on the why as possible.
+If you're eager to solve an issue yourself, simply follow our [local development guide](https://posthog.com/handbook/engineering/developing-locally) and create a fitting pull request. Make sure you've added a test for your change, and that all tests pass. A member of the team will then add your PR to their review queue. (In the event we miss your PR and don't review it within a couple of days, feel free to ping someone from the team.)
 
-# Features
+Note that due to licensing complications, we prefer not to accept pull requests that affect paid features (which are located in the `ee/` directory).
 
-We don't, yet, have a prescriptive roadmap laid out.
+## Code of conduct
 
-As a rule of thumb - if it fits with helping developers understand product usage, we'll generally like it.
+Please follow [our code of conduct](https://github.com/github/docs/blob/main/CODE_OF_CONDUCT.md) as a participant in the PostHog project.
 
-If you are at all unsure, just raise it as an enhancement issue first, and we'll very quickly respond.
+## License
+
+By contributing to PostHog, you agree that your contributions will be licensed under the [MIT Expat license](https://github.com/PostHog/posthog/blob/master/LICENSE).

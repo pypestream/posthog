@@ -1,4 +1,4 @@
-import { actions, connect, kea, listeners, path, reducers } from 'kea'
+import { actions, connect, kea, listeners, path, reducers, selectors } from 'kea'
 import { userLogic } from 'scenes/userLogic'
 
 import type { supportLogicType } from './supportLogicType'
@@ -132,6 +132,9 @@ export const supportLogic = kea<supportLogicType>([
             },
         ],
     })),
+    selectors({
+        isSupportFormAvailable: [() => [preflightLogic.selectors.preflight], (preflight) => !!preflight?.cloud],
+    }),
     forms(({ actions }) => ({
         sendSupportRequest: {
             defaults: {} as unknown as {

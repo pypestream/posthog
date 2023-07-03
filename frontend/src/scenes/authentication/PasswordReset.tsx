@@ -14,6 +14,8 @@ import { Field } from 'lib/forms/Field'
 import { BridgePage } from 'lib/components/BridgePage/BridgePage'
 import { IconCheckCircleOutline, IconErrorOutline } from 'lib/lemon-ui/icons'
 import { SupportModalButton } from './SupportModalButton'
+import { supportLogic } from 'lib/components/Support/supportLogic'
+import { SupportModal } from 'lib/components/Support/SupportModal'
 
 export const scene: SceneExport = {
     component: PasswordReset,
@@ -134,21 +136,30 @@ function ResetSuccess(): JSX.Element {
 
 function ResetThrottled(): JSX.Element {
     const { requestPasswordReset } = useValues(passwordResetLogic)
+    const { openSupportLoggedOutForm } = useActions(supportLogic)
+    const { isSupportFormAvailable } = useValues(supportLogic)
     const { push } = useActions(router)
 
     return (
         <div className="text-center">
-            There have been too many reset requests for the email <b>{requestPasswordReset?.email || 'you typed'}</b>.
-            Please try again later or{' '}
-            <Link to="mailto:hey@posthog.com" className="inline-block">
-                get in touch
-            </Link>{' '}
-            if you think this has been a mistake.
+            There have been too many reset requests for the email{' '}
+            {requestPasswordReset?.email ? <b>{requestPasswordReset.email}</b> : 'you typed'}. Please try again later
+            {isSupportFormAvailable ? (
+                <>
+                    {' '}
+                    or <Link onClick={() => openSupportLoggedOutForm()}>get in touch</Link> if you think this has been a
+                    mistake
+                </>
+            ) : (
+                ''
+            )}
+            .
             <div className="mt-4">
                 <LemonButton type="primary" data-attr="back-to-login" center fullWidth onClick={() => push('/login')}>
                     Back to login
                 </LemonButton>
             </div>
+            <SupportModal />
         </div>
     )
 }

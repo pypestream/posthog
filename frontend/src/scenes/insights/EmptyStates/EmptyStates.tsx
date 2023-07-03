@@ -19,7 +19,6 @@ import { actionsAndEventsToSeries } from '~/queries/nodes/InsightQuery/utils/fil
 import { funnelDataLogic } from 'scenes/funnels/funnelDataLogic'
 import { FunnelsQuery } from '~/queries/schema'
 import { supportLogic } from 'lib/components/Support/supportLogic'
-import { preflightLogic } from 'scenes/PreflightCheck/preflightLogic'
 import { BuilderHog3 } from 'lib/components/hedgehogs'
 
 export function InsightEmptyState({
@@ -105,10 +104,10 @@ export interface InsightErrorStateProps {
 }
 
 export function InsightErrorState({ excludeDetail, title, queryId }: InsightErrorStateProps): JSX.Element {
-    const { preflight } = useValues(preflightLogic)
+    const { isSupportFormAvailable } = useValues(supportLogic)
     const { openSupportForm } = useActions(supportLogic)
 
-    if (!preflight?.cloud) {
+    if (!isSupportFormAvailable) {
         excludeDetail = true // We don't provide support for self-hosted instances
     }
 
