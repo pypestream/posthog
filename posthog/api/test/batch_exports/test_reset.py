@@ -1,7 +1,6 @@
 import datetime as dt
 import time
 
-import pytest
 from django.test.client import Client as HttpClient
 
 from posthog.api.test.batch_exports.conftest import start_test_worker
@@ -14,6 +13,7 @@ from posthog.api.test.test_organization import create_organization
 from posthog.api.test.test_team import create_team
 from posthog.api.test.test_user import create_user
 from posthog.temporal.client import sync_connect
+from posthog.test.base import TransactionTestCase
 
 
 def wait_for_runs(client, team_id, batch_export_id, timeout=10, number_of_runs=1):
@@ -40,54 +40,56 @@ def wait_for_runs(client, team_id, batch_export_id, timeout=10, number_of_runs=1
     return batch_export_runs
 
 
-@pytest.mark.django_db(transaction=True)
-def test_can_reset_export_run(client: HttpClient):
-    """Test calling the reset endpoint to reset a BatchExportRun a couple of times."""
-    temporal = sync_connect()
+class TestReset(TransactionTestCase):
+    available_apps = ["posthog"]
 
-    destination_data = {
-        "type": "S3",
-        "config": {
-            "bucket_name": "my-production-s3-bucket",
-            "region": "us-east-1",
-            "prefix": "posthog-events/",
-            "batch_window_size": 3600,
-            "aws_access_key_id": "abc123",
-            "aws_secret_access_key": "secret",
-        },
-    }
+    def test_can_reset_export_run(client: HttpClient):
+        """Test calling the reset endpoint to reset a BatchExportRun a couple of times."""
+        temporal = sync_connect()
 
-    batch_export_data = {
-        "name": "my-production-s3-bucket-destination",
-        "destination": destination_data,
-        "interval": "hour",
-        "trigger_immediately": True,
-    }
+        destination_data = {
+            "type": "S3",
+            "config": {
+                "bucket_name": "my-production-s3-bucket",
+                "region": "us-east-1",
+                "prefix": "posthog-events/",
+                "batch_window_size": 3600,
+                "aws_access_key_id": "abc123",
+                "aws_secret_access_key": "secret",
+            },
+        }
 
-    organization = create_organization("Test Org")
-    team = create_team(organization)
-    user = create_user("reset.test@user.com", "Reset test user", organization)
-    client.force_login(user)
+        batch_export_data = {
+            "name": "my-production-s3-bucket-destination",
+            "destination": destination_data,
+            "interval": "hour",
+            "trigger_immediately": True,
+        }
 
-    with start_test_worker(temporal):
-        batch_export = create_batch_export_ok(
-            client,
-            team.pk,
-            batch_export_data,
-        )
+        organization = create_organization("Test Org")
+        team = create_team(organization)
+        user = create_user("reset.test@user.com", "Reset test user", organization)
+        client.force_login(user)
 
-        batch_export_runs = wait_for_runs(client, team.pk, batch_export["id"])
-        assert batch_export_runs["count"] == 1
+        with start_test_worker(temporal):
+            batch_export = create_batch_export_ok(
+                client,
+                team.pk,
+                batch_export_data,
+            )
 
-        first_batch_export_run = batch_export_runs["results"][0]
-        reset_batch_export_run_ok(client, team.pk, batch_export["id"], first_batch_export_run["id"])
+            batch_export_runs = wait_for_runs(client, team.pk, batch_export["id"])
+            assert batch_export_runs["count"] == 1
 
-        batch_export_runs = wait_for_runs(client, team.pk, batch_export["id"], number_of_runs=2)
-        assert batch_export_runs["count"] == 2
-        assert batch_export_runs["results"][1] == first_batch_export_run
+            first_batch_export_run = batch_export_runs["results"][0]
+            reset_batch_export_run_ok(client, team.pk, batch_export["id"], first_batch_export_run["id"])
 
-        reset_batch_export_run_ok(client, team.pk, batch_export["id"], first_batch_export_run["id"])
+            batch_export_runs = wait_for_runs(client, team.pk, batch_export["id"], number_of_runs=2)
+            assert batch_export_runs["count"] == 2
+            assert batch_export_runs["results"][1] == first_batch_export_run
 
-        batch_export_runs = wait_for_runs(client, team.pk, batch_export["id"], number_of_runs=3)
-        assert batch_export_runs["count"] == 3
-        assert batch_export_runs["results"][2] == first_batch_export_run
+            reset_batch_export_run_ok(client, team.pk, batch_export["id"], first_batch_export_run["id"])
+
+            batch_export_runs = wait_for_runs(client, team.pk, batch_export["id"], number_of_runs=3)
+            assert batch_export_runs["count"] == 3
+            assert batch_export_runs["results"][2] == first_batch_export_run
