@@ -14,6 +14,7 @@ from posthog.api.test.test_team import create_team
 from posthog.api.test.test_user import create_user
 from posthog.temporal.client import sync_connect
 from posthog.test.base import TransactionTestCase
+import pytest
 
 
 def wait_for_runs(client, team_id, batch_export_id, timeout=10, number_of_runs=1):
@@ -40,10 +41,17 @@ def wait_for_runs(client, team_id, batch_export_id, timeout=10, number_of_runs=1
     return batch_export_runs
 
 
+@pytest.mark.usefixtures("client")
 class TestReset(TransactionTestCase):
     available_apps = ["posthog"]
 
-    def test_can_reset_export_run(client: HttpClient):
+    @pytest.fixture(autouse=True)
+    def use_test_client(self, client: HttpClient):
+        if not client:
+            pytest.fail("client fixture is required for this test")
+        self.client = client
+
+    def test_can_reset_export_run(self):
         """Test calling the reset endpoint to reset a BatchExportRun a couple of times."""
         temporal = sync_connect()
 
@@ -69,27 +77,27 @@ class TestReset(TransactionTestCase):
         organization = create_organization("Test Org")
         team = create_team(organization)
         user = create_user("reset.test@user.com", "Reset test user", organization)
-        client.force_login(user)
+        self.client.force_login(user)
 
         with start_test_worker(temporal):
             batch_export = create_batch_export_ok(
-                client,
+                self.client,
                 team.pk,
                 batch_export_data,
             )
 
-            batch_export_runs = wait_for_runs(client, team.pk, batch_export["id"])
+            batch_export_runs = wait_for_runs(self.client, team.pk, batch_export["id"])
             assert batch_export_runs["count"] == 1
 
             first_batch_export_run = batch_export_runs["results"][0]
-            reset_batch_export_run_ok(client, team.pk, batch_export["id"], first_batch_export_run["id"])
+            reset_batch_export_run_ok(self.client, team.pk, batch_export["id"], first_batch_export_run["id"])
 
-            batch_export_runs = wait_for_runs(client, team.pk, batch_export["id"], number_of_runs=2)
+            batch_export_runs = wait_for_runs(self.client, team.pk, batch_export["id"], number_of_runs=2)
             assert batch_export_runs["count"] == 2
             assert batch_export_runs["results"][1] == first_batch_export_run
 
-            reset_batch_export_run_ok(client, team.pk, batch_export["id"], first_batch_export_run["id"])
+            reset_batch_export_run_ok(self.client, team.pk, batch_export["id"], first_batch_export_run["id"])
 
-            batch_export_runs = wait_for_runs(client, team.pk, batch_export["id"], number_of_runs=3)
+            batch_export_runs = wait_for_runs(self.client, team.pk, batch_export["id"], number_of_runs=3)
             assert batch_export_runs["count"] == 3
             assert batch_export_runs["results"][2] == first_batch_export_run
