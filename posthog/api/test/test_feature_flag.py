@@ -6,7 +6,7 @@ from unittest.mock import call, patch
 from django.core.cache import cache
 from django.db import connection
 from django.db.utils import OperationalError
-from posthog.test.base import TransactionTestCase
+from django.test import TransactionTestCase
 from django.test.client import RequestFactory
 from django.utils import timezone
 from freezegun.api import freeze_time
