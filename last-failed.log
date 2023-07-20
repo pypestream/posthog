@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.1
+django: settings: posthog.settings (from ini)
+rootdir: /workspaces/posthog, configfile: pytest.ini
+plugins: celery-4.4.7, flaky-3.7.0, env-0.6.2, cov-2.12.1, icdiff-0.5, syrupy-1.4.6, asyncio-0.20.3, Faker-17.5.0, mock-3.5.1, django-4.1.0, split-0.6.0
+asyncio: mode=strict
+collected 2643 items
+run-last-failure: no previously failed tests, not deselecting items.
+
+hogvm/python/test/test_execute.py ....                                   [  0%]
+posthog/api/dashboards/test/test_dashboard_templates.py EEEEEEEEEEEEEE   [  0%]
+posthog/api/test/test_action.py EEEEEEEEEEEEEEEEE                        [  1%]
+posthog/api/test/test_activity_log.py EE                                 [  1%]
+posthog/api/test/test_annotation.py EEEEEEEEE                            [  1%]
+posthog/api/test/test_app_metrics.py EEEE                                [  1%]
+posthog/api/test/test_async_migrations.py EEEEEEEE                       [  2%]
+posthog/api/test/test_authentication.py EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE [  3%]
+                                                                         [  3%]
+posthog/api/test/test_capture.py EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE [  4%]
+E

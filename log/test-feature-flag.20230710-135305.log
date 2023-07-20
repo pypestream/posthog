@@ -1,0 +1,2408 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.1
+django: settings: posthog.settings (from ini)
+rootdir: /workspaces/posthog, configfile: pytest.ini
+plugins: celery-4.4.7, flaky-3.7.0, env-0.6.2, cov-2.12.1, icdiff-0.5, syrupy-1.4.6, asyncio-0.20.3, Faker-17.5.0, mock-3.5.1, django-4.1.0, split-0.6.0
+asyncio: mode=strict
+collected 68 items
+
+posthog/api/test/test_feature_flag.py .................................. [ 50%]
+..................FFFFF.....FEFEFEFEFEFE                                 [100%]
+
+==================================== ERRORS ====================================
+_ ERROR at teardown of TestResiliency.test_feature_flags_v3_with_a_working_slow_db _
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daeb0d480>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daeb0d480>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               psycopg2.errors.FeatureNotSupported: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: FeatureNotSupported
+
+The above exception was the direct cause of the following exception:
+
+self = <django.core.management.commands.flush.Command object at 0x7f6daef05ab0>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+>                   connection.ops.execute_sql_flush(sql_list)
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.postgresql.operations.DatabaseOperations object at 0x7f6dd1da51e0>
+sql_list = ['TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "p...otificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";']
+
+    def execute_sql_flush(self, sql_list):
+        """Execute a list of SQL statements to flush the database."""
+        with transaction.atomic(
+            using=self.connection.alias,
+            savepoint=self.connection.features.can_rollback_ddl,
+        ):
+            with self.connection.cursor() as cursor:
+                for sql in sql_list:
+>                   cursor.execute(sql)
+
+env/lib/python3.10/site-packages/django/db/backends/base/operations.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daeb0d480>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+
+    def execute(self, sql, params=None):
+>       return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daeb0d480>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None, many = False
+executor = <bound method CursorWrapper._execute of <django.db.backends.utils.CursorWrapper object at 0x7f6daeb0d480>>
+
+    def _execute_with_wrappers(self, sql, params, many, executor):
+        context = {'connection': self.db, 'cursor': self}
+        for wrapper in reversed(self.db.execute_wrappers):
+            executor = functools.partial(wrapper, executor)
+>       return executor(sql, params, many, context)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daeb0d480>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daeb0d480>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+>       with self.db.wrap_database_errors:
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.utils.DatabaseErrorWrapper object at 0x7f6db022e710>
+exc_type = <class 'psycopg2.errors.FeatureNotSupported'>
+exc_value = FeatureNotSupported('cannot truncate a table referenced in a foreign key constraint\nDETAIL:  Table "ee_hook" references "posthog_user".\nHINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.\n')
+traceback = <traceback object at 0x7f6daedfabc0>
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if exc_type is None:
+            return
+        for dj_exc_type in (
+                DataError,
+                OperationalError,
+                IntegrityError,
+                InternalError,
+                ProgrammingError,
+                NotSupportedError,
+                DatabaseError,
+                InterfaceError,
+                Error,
+        ):
+            db_exc_type = getattr(self.wrapper.Database, dj_exc_type.__name__)
+            if issubclass(exc_type, db_exc_type):
+                dj_exc_value = dj_exc_type(*exc_value.args)
+                # Only set the 'errors_occurred' flag for errors that may make
+                # the connection unusable.
+                if dj_exc_type not in (DataError, IntegrityError):
+                    self.wrapper.errors_occurred = True
+>               raise dj_exc_value.with_traceback(traceback) from exc_value
+
+env/lib/python3.10/site-packages/django/db/utils.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daeb0d480>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daeb0d480>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               django.db.utils.NotSupportedError: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: NotSupportedError
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_a_working_slow_db>
+result = <TestCaseFunction test_feature_flags_v3_with_a_working_slow_db>
+debug = False
+
+    def _setup_and_call(self, result, debug=False):
+        """
+        Perform the following in order: pre-setup, run test, post-teardown,
+        skipping pre/post hooks if test is set to be skipped.
+    
+        If debug=True, reraise any errors in setup and use super().debug()
+        instead of __call__() to run the test.
+        """
+        testMethod = getattr(self, self._testMethodName)
+        skipped = (
+            getattr(self.__class__, "__unittest_skip__", False) or
+            getattr(testMethod, "__unittest_skip__", False)
+        )
+    
+        # Convert async test methods.
+        if asyncio.iscoroutinefunction(testMethod):
+            setattr(self, self._testMethodName, async_to_sync(testMethod))
+    
+        if not skipped:
+            try:
+                self._pre_setup()
+            except Exception:
+                if debug:
+                    raise
+                result.addError(self, sys.exc_info())
+                return
+        if debug:
+            super().debug()
+        else:
+            super().__call__(result)
+        if not skipped:
+            try:
+>               self._post_teardown()
+
+env/lib/python3.10/site-packages/django/test/testcases.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+env/lib/python3.10/site-packages/django/test/testcases.py:1006: in _post_teardown
+    self._fixture_teardown()
+env/lib/python3.10/site-packages/django/test/testcases.py:1038: in _fixture_teardown
+    call_command('flush', verbosity=0, interactive=False,
+env/lib/python3.10/site-packages/django/core/management/__init__.py:181: in call_command
+    return command.execute(*args, **defaults)
+env/lib/python3.10/site-packages/django/core/management/base.py:398: in execute
+    output = self.handle(*args, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.core.management.commands.flush.Command object at 0x7f6daef05ab0>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+                    connection.ops.execute_sql_flush(sql_list)
+                except Exception as exc:
+>                   raise CommandError(
+                        "Database %s couldn't be flushed. Possible reasons:\n"
+                        "  * The database isn't running or isn't configured correctly.\n"
+                        "  * At least one of the expected database tables doesn't exist.\n"
+                        "  * The SQL was invalid.\n"
+                        "Hint: Look at the output of 'django-admin sqlflush'. "
+                        "That's the SQL this command wasn't able to run." % (
+                            connection.settings_dict['NAME'],
+                        )
+                    ) from exc
+E                   django.core.management.base.CommandError: Database test_posthog couldn't be flushed. Possible reasons:
+E                     * The database isn't running or isn't configured correctly.
+E                     * At least one of the expected database tables doesn't exist.
+E                     * The SQL was invalid.
+E                   Hint: Look at the output of 'django-admin sqlflush'. That's the SQL this command wasn't able to run.
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:65: CommandError
+_ ERROR at teardown of TestResiliency.test_feature_flags_v3_with_experience_continuity_working_slow_db _
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dafc47b20>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dafc47b20>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               psycopg2.errors.FeatureNotSupported: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: FeatureNotSupported
+
+The above exception was the direct cause of the following exception:
+
+self = <django.core.management.commands.flush.Command object at 0x7f6daf157eb0>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+>                   connection.ops.execute_sql_flush(sql_list)
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.postgresql.operations.DatabaseOperations object at 0x7f6dd1da51e0>
+sql_list = ['TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "p...otificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";']
+
+    def execute_sql_flush(self, sql_list):
+        """Execute a list of SQL statements to flush the database."""
+        with transaction.atomic(
+            using=self.connection.alias,
+            savepoint=self.connection.features.can_rollback_ddl,
+        ):
+            with self.connection.cursor() as cursor:
+                for sql in sql_list:
+>                   cursor.execute(sql)
+
+env/lib/python3.10/site-packages/django/db/backends/base/operations.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dafc47b20>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+
+    def execute(self, sql, params=None):
+>       return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dafc47b20>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None, many = False
+executor = <bound method CursorWrapper._execute of <django.db.backends.utils.CursorWrapper object at 0x7f6dafc47b20>>
+
+    def _execute_with_wrappers(self, sql, params, many, executor):
+        context = {'connection': self.db, 'cursor': self}
+        for wrapper in reversed(self.db.execute_wrappers):
+            executor = functools.partial(wrapper, executor)
+>       return executor(sql, params, many, context)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dafc47b20>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dafc47b20>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+>       with self.db.wrap_database_errors:
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.utils.DatabaseErrorWrapper object at 0x7f6db022e710>
+exc_type = <class 'psycopg2.errors.FeatureNotSupported'>
+exc_value = FeatureNotSupported('cannot truncate a table referenced in a foreign key constraint\nDETAIL:  Table "ee_hook" references "posthog_user".\nHINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.\n')
+traceback = <traceback object at 0x7f6daef4c6c0>
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if exc_type is None:
+            return
+        for dj_exc_type in (
+                DataError,
+                OperationalError,
+                IntegrityError,
+                InternalError,
+                ProgrammingError,
+                NotSupportedError,
+                DatabaseError,
+                InterfaceError,
+                Error,
+        ):
+            db_exc_type = getattr(self.wrapper.Database, dj_exc_type.__name__)
+            if issubclass(exc_type, db_exc_type):
+                dj_exc_value = dj_exc_type(*exc_value.args)
+                # Only set the 'errors_occurred' flag for errors that may make
+                # the connection unusable.
+                if dj_exc_type not in (DataError, IntegrityError):
+                    self.wrapper.errors_occurred = True
+>               raise dj_exc_value.with_traceback(traceback) from exc_value
+
+env/lib/python3.10/site-packages/django/db/utils.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dafc47b20>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dafc47b20>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               django.db.utils.NotSupportedError: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: NotSupportedError
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_experience_continuity_working_slow_db>
+result = <TestCaseFunction test_feature_flags_v3_with_experience_continuity_working_slow_db>
+debug = False
+
+    def _setup_and_call(self, result, debug=False):
+        """
+        Perform the following in order: pre-setup, run test, post-teardown,
+        skipping pre/post hooks if test is set to be skipped.
+    
+        If debug=True, reraise any errors in setup and use super().debug()
+        instead of __call__() to run the test.
+        """
+        testMethod = getattr(self, self._testMethodName)
+        skipped = (
+            getattr(self.__class__, "__unittest_skip__", False) or
+            getattr(testMethod, "__unittest_skip__", False)
+        )
+    
+        # Convert async test methods.
+        if asyncio.iscoroutinefunction(testMethod):
+            setattr(self, self._testMethodName, async_to_sync(testMethod))
+    
+        if not skipped:
+            try:
+                self._pre_setup()
+            except Exception:
+                if debug:
+                    raise
+                result.addError(self, sys.exc_info())
+                return
+        if debug:
+            super().debug()
+        else:
+            super().__call__(result)
+        if not skipped:
+            try:
+>               self._post_teardown()
+
+env/lib/python3.10/site-packages/django/test/testcases.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+env/lib/python3.10/site-packages/django/test/testcases.py:1006: in _post_teardown
+    self._fixture_teardown()
+env/lib/python3.10/site-packages/django/test/testcases.py:1038: in _fixture_teardown
+    call_command('flush', verbosity=0, interactive=False,
+env/lib/python3.10/site-packages/django/core/management/__init__.py:181: in call_command
+    return command.execute(*args, **defaults)
+env/lib/python3.10/site-packages/django/core/management/base.py:398: in execute
+    output = self.handle(*args, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.core.management.commands.flush.Command object at 0x7f6daf157eb0>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+                    connection.ops.execute_sql_flush(sql_list)
+                except Exception as exc:
+>                   raise CommandError(
+                        "Database %s couldn't be flushed. Possible reasons:\n"
+                        "  * The database isn't running or isn't configured correctly.\n"
+                        "  * At least one of the expected database tables doesn't exist.\n"
+                        "  * The SQL was invalid.\n"
+                        "Hint: Look at the output of 'django-admin sqlflush'. "
+                        "That's the SQL this command wasn't able to run." % (
+                            connection.settings_dict['NAME'],
+                        )
+                    ) from exc
+E                   django.core.management.base.CommandError: Database test_posthog couldn't be flushed. Possible reasons:
+E                     * The database isn't running or isn't configured correctly.
+E                     * At least one of the expected database tables doesn't exist.
+E                     * The SQL was invalid.
+E                   Hint: Look at the output of 'django-admin sqlflush'. That's the SQL this command wasn't able to run.
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:65: CommandError
+_ ERROR at teardown of TestResiliency.test_feature_flags_v3_with_group_properties _
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daf080100>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daf080100>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               psycopg2.errors.FeatureNotSupported: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: FeatureNotSupported
+
+The above exception was the direct cause of the following exception:
+
+self = <django.core.management.commands.flush.Command object at 0x7f6daece8eb0>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+>                   connection.ops.execute_sql_flush(sql_list)
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.postgresql.operations.DatabaseOperations object at 0x7f6dd1da51e0>
+sql_list = ['TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "p...otificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";']
+
+    def execute_sql_flush(self, sql_list):
+        """Execute a list of SQL statements to flush the database."""
+        with transaction.atomic(
+            using=self.connection.alias,
+            savepoint=self.connection.features.can_rollback_ddl,
+        ):
+            with self.connection.cursor() as cursor:
+                for sql in sql_list:
+>                   cursor.execute(sql)
+
+env/lib/python3.10/site-packages/django/db/backends/base/operations.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daf080100>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+
+    def execute(self, sql, params=None):
+>       return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daf080100>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None, many = False
+executor = <bound method CursorWrapper._execute of <django.db.backends.utils.CursorWrapper object at 0x7f6daf080100>>
+
+    def _execute_with_wrappers(self, sql, params, many, executor):
+        context = {'connection': self.db, 'cursor': self}
+        for wrapper in reversed(self.db.execute_wrappers):
+            executor = functools.partial(wrapper, executor)
+>       return executor(sql, params, many, context)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daf080100>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daf080100>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+>       with self.db.wrap_database_errors:
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.utils.DatabaseErrorWrapper object at 0x7f6db022e710>
+exc_type = <class 'psycopg2.errors.FeatureNotSupported'>
+exc_value = FeatureNotSupported('cannot truncate a table referenced in a foreign key constraint\nDETAIL:  Table "ee_hook" references "posthog_user".\nHINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.\n')
+traceback = <traceback object at 0x7f6daee9e440>
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if exc_type is None:
+            return
+        for dj_exc_type in (
+                DataError,
+                OperationalError,
+                IntegrityError,
+                InternalError,
+                ProgrammingError,
+                NotSupportedError,
+                DatabaseError,
+                InterfaceError,
+                Error,
+        ):
+            db_exc_type = getattr(self.wrapper.Database, dj_exc_type.__name__)
+            if issubclass(exc_type, db_exc_type):
+                dj_exc_value = dj_exc_type(*exc_value.args)
+                # Only set the 'errors_occurred' flag for errors that may make
+                # the connection unusable.
+                if dj_exc_type not in (DataError, IntegrityError):
+                    self.wrapper.errors_occurred = True
+>               raise dj_exc_value.with_traceback(traceback) from exc_value
+
+env/lib/python3.10/site-packages/django/db/utils.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daf080100>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daf080100>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               django.db.utils.NotSupportedError: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: NotSupportedError
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_group_properties>
+result = <TestCaseFunction test_feature_flags_v3_with_group_properties>
+debug = False
+
+    def _setup_and_call(self, result, debug=False):
+        """
+        Perform the following in order: pre-setup, run test, post-teardown,
+        skipping pre/post hooks if test is set to be skipped.
+    
+        If debug=True, reraise any errors in setup and use super().debug()
+        instead of __call__() to run the test.
+        """
+        testMethod = getattr(self, self._testMethodName)
+        skipped = (
+            getattr(self.__class__, "__unittest_skip__", False) or
+            getattr(testMethod, "__unittest_skip__", False)
+        )
+    
+        # Convert async test methods.
+        if asyncio.iscoroutinefunction(testMethod):
+            setattr(self, self._testMethodName, async_to_sync(testMethod))
+    
+        if not skipped:
+            try:
+                self._pre_setup()
+            except Exception:
+                if debug:
+                    raise
+                result.addError(self, sys.exc_info())
+                return
+        if debug:
+            super().debug()
+        else:
+            super().__call__(result)
+        if not skipped:
+            try:
+>               self._post_teardown()
+
+env/lib/python3.10/site-packages/django/test/testcases.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+env/lib/python3.10/site-packages/django/test/testcases.py:1006: in _post_teardown
+    self._fixture_teardown()
+env/lib/python3.10/site-packages/django/test/testcases.py:1038: in _fixture_teardown
+    call_command('flush', verbosity=0, interactive=False,
+env/lib/python3.10/site-packages/django/core/management/__init__.py:181: in call_command
+    return command.execute(*args, **defaults)
+env/lib/python3.10/site-packages/django/core/management/base.py:398: in execute
+    output = self.handle(*args, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.core.management.commands.flush.Command object at 0x7f6daece8eb0>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+                    connection.ops.execute_sql_flush(sql_list)
+                except Exception as exc:
+>                   raise CommandError(
+                        "Database %s couldn't be flushed. Possible reasons:\n"
+                        "  * The database isn't running or isn't configured correctly.\n"
+                        "  * At least one of the expected database tables doesn't exist.\n"
+                        "  * The SQL was invalid.\n"
+                        "Hint: Look at the output of 'django-admin sqlflush'. "
+                        "That's the SQL this command wasn't able to run." % (
+                            connection.settings_dict['NAME'],
+                        )
+                    ) from exc
+E                   django.core.management.base.CommandError: Database test_posthog couldn't be flushed. Possible reasons:
+E                     * The database isn't running or isn't configured correctly.
+E                     * At least one of the expected database tables doesn't exist.
+E                     * The SQL was invalid.
+E                   Hint: Look at the output of 'django-admin sqlflush'. That's the SQL this command wasn't able to run.
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:65: CommandError
+_ ERROR at teardown of TestResiliency.test_feature_flags_v3_with_group_properties_and_slow_db _
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae963a00>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dae963a00>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               psycopg2.errors.FeatureNotSupported: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: FeatureNotSupported
+
+The above exception was the direct cause of the following exception:
+
+self = <django.core.management.commands.flush.Command object at 0x7f6daef94df0>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+>                   connection.ops.execute_sql_flush(sql_list)
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.postgresql.operations.DatabaseOperations object at 0x7f6dd1da51e0>
+sql_list = ['TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "p...otificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";']
+
+    def execute_sql_flush(self, sql_list):
+        """Execute a list of SQL statements to flush the database."""
+        with transaction.atomic(
+            using=self.connection.alias,
+            savepoint=self.connection.features.can_rollback_ddl,
+        ):
+            with self.connection.cursor() as cursor:
+                for sql in sql_list:
+>                   cursor.execute(sql)
+
+env/lib/python3.10/site-packages/django/db/backends/base/operations.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae963a00>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+
+    def execute(self, sql, params=None):
+>       return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae963a00>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None, many = False
+executor = <bound method CursorWrapper._execute of <django.db.backends.utils.CursorWrapper object at 0x7f6dae963a00>>
+
+    def _execute_with_wrappers(self, sql, params, many, executor):
+        context = {'connection': self.db, 'cursor': self}
+        for wrapper in reversed(self.db.execute_wrappers):
+            executor = functools.partial(wrapper, executor)
+>       return executor(sql, params, many, context)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae963a00>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dae963a00>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+>       with self.db.wrap_database_errors:
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.utils.DatabaseErrorWrapper object at 0x7f6db022e710>
+exc_type = <class 'psycopg2.errors.FeatureNotSupported'>
+exc_value = FeatureNotSupported('cannot truncate a table referenced in a foreign key constraint\nDETAIL:  Table "ee_hook" references "posthog_user".\nHINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.\n')
+traceback = <traceback object at 0x7f6daedaa440>
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if exc_type is None:
+            return
+        for dj_exc_type in (
+                DataError,
+                OperationalError,
+                IntegrityError,
+                InternalError,
+                ProgrammingError,
+                NotSupportedError,
+                DatabaseError,
+                InterfaceError,
+                Error,
+        ):
+            db_exc_type = getattr(self.wrapper.Database, dj_exc_type.__name__)
+            if issubclass(exc_type, db_exc_type):
+                dj_exc_value = dj_exc_type(*exc_value.args)
+                # Only set the 'errors_occurred' flag for errors that may make
+                # the connection unusable.
+                if dj_exc_type not in (DataError, IntegrityError):
+                    self.wrapper.errors_occurred = True
+>               raise dj_exc_value.with_traceback(traceback) from exc_value
+
+env/lib/python3.10/site-packages/django/db/utils.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae963a00>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dae963a00>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               django.db.utils.NotSupportedError: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: NotSupportedError
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_group_properties_and_slow_db>
+result = <TestCaseFunction test_feature_flags_v3_with_group_properties_and_slow_db>
+debug = False
+
+    def _setup_and_call(self, result, debug=False):
+        """
+        Perform the following in order: pre-setup, run test, post-teardown,
+        skipping pre/post hooks if test is set to be skipped.
+    
+        If debug=True, reraise any errors in setup and use super().debug()
+        instead of __call__() to run the test.
+        """
+        testMethod = getattr(self, self._testMethodName)
+        skipped = (
+            getattr(self.__class__, "__unittest_skip__", False) or
+            getattr(testMethod, "__unittest_skip__", False)
+        )
+    
+        # Convert async test methods.
+        if asyncio.iscoroutinefunction(testMethod):
+            setattr(self, self._testMethodName, async_to_sync(testMethod))
+    
+        if not skipped:
+            try:
+                self._pre_setup()
+            except Exception:
+                if debug:
+                    raise
+                result.addError(self, sys.exc_info())
+                return
+        if debug:
+            super().debug()
+        else:
+            super().__call__(result)
+        if not skipped:
+            try:
+>               self._post_teardown()
+
+env/lib/python3.10/site-packages/django/test/testcases.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+env/lib/python3.10/site-packages/django/test/testcases.py:1006: in _post_teardown
+    self._fixture_teardown()
+env/lib/python3.10/site-packages/django/test/testcases.py:1038: in _fixture_teardown
+    call_command('flush', verbosity=0, interactive=False,
+env/lib/python3.10/site-packages/django/core/management/__init__.py:181: in call_command
+    return command.execute(*args, **defaults)
+env/lib/python3.10/site-packages/django/core/management/base.py:398: in execute
+    output = self.handle(*args, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.core.management.commands.flush.Command object at 0x7f6daef94df0>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+                    connection.ops.execute_sql_flush(sql_list)
+                except Exception as exc:
+>                   raise CommandError(
+                        "Database %s couldn't be flushed. Possible reasons:\n"
+                        "  * The database isn't running or isn't configured correctly.\n"
+                        "  * At least one of the expected database tables doesn't exist.\n"
+                        "  * The SQL was invalid.\n"
+                        "Hint: Look at the output of 'django-admin sqlflush'. "
+                        "That's the SQL this command wasn't able to run." % (
+                            connection.settings_dict['NAME'],
+                        )
+                    ) from exc
+E                   django.core.management.base.CommandError: Database test_posthog couldn't be flushed. Possible reasons:
+E                     * The database isn't running or isn't configured correctly.
+E                     * At least one of the expected database tables doesn't exist.
+E                     * The SQL was invalid.
+E                   Hint: Look at the output of 'django-admin sqlflush'. That's the SQL this command wasn't able to run.
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:65: CommandError
+_ ERROR at teardown of TestResiliency.test_feature_flags_v3_with_person_properties _
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1360>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1360>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               psycopg2.errors.FeatureNotSupported: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: FeatureNotSupported
+
+The above exception was the direct cause of the following exception:
+
+self = <django.core.management.commands.flush.Command object at 0x7f6dae9e0430>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+>                   connection.ops.execute_sql_flush(sql_list)
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.postgresql.operations.DatabaseOperations object at 0x7f6dd1da51e0>
+sql_list = ['TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "p...otificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";']
+
+    def execute_sql_flush(self, sql_list):
+        """Execute a list of SQL statements to flush the database."""
+        with transaction.atomic(
+            using=self.connection.alias,
+            savepoint=self.connection.features.can_rollback_ddl,
+        ):
+            with self.connection.cursor() as cursor:
+                for sql in sql_list:
+>                   cursor.execute(sql)
+
+env/lib/python3.10/site-packages/django/db/backends/base/operations.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1360>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+
+    def execute(self, sql, params=None):
+>       return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1360>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None, many = False
+executor = <bound method CursorWrapper._execute of <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1360>>
+
+    def _execute_with_wrappers(self, sql, params, many, executor):
+        context = {'connection': self.db, 'cursor': self}
+        for wrapper in reversed(self.db.execute_wrappers):
+            executor = functools.partial(wrapper, executor)
+>       return executor(sql, params, many, context)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1360>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1360>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+>       with self.db.wrap_database_errors:
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.utils.DatabaseErrorWrapper object at 0x7f6db022e710>
+exc_type = <class 'psycopg2.errors.FeatureNotSupported'>
+exc_value = FeatureNotSupported('cannot truncate a table referenced in a foreign key constraint\nDETAIL:  Table "ee_hook" references "posthog_user".\nHINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.\n')
+traceback = <traceback object at 0x7f6daeaf3ec0>
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if exc_type is None:
+            return
+        for dj_exc_type in (
+                DataError,
+                OperationalError,
+                IntegrityError,
+                InternalError,
+                ProgrammingError,
+                NotSupportedError,
+                DatabaseError,
+                InterfaceError,
+                Error,
+        ):
+            db_exc_type = getattr(self.wrapper.Database, dj_exc_type.__name__)
+            if issubclass(exc_type, db_exc_type):
+                dj_exc_value = dj_exc_type(*exc_value.args)
+                # Only set the 'errors_occurred' flag for errors that may make
+                # the connection unusable.
+                if dj_exc_type not in (DataError, IntegrityError):
+                    self.wrapper.errors_occurred = True
+>               raise dj_exc_value.with_traceback(traceback) from exc_value
+
+env/lib/python3.10/site-packages/django/db/utils.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1360>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1360>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               django.db.utils.NotSupportedError: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: NotSupportedError
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_person_properties>
+result = <TestCaseFunction test_feature_flags_v3_with_person_properties>
+debug = False
+
+    def _setup_and_call(self, result, debug=False):
+        """
+        Perform the following in order: pre-setup, run test, post-teardown,
+        skipping pre/post hooks if test is set to be skipped.
+    
+        If debug=True, reraise any errors in setup and use super().debug()
+        instead of __call__() to run the test.
+        """
+        testMethod = getattr(self, self._testMethodName)
+        skipped = (
+            getattr(self.__class__, "__unittest_skip__", False) or
+            getattr(testMethod, "__unittest_skip__", False)
+        )
+    
+        # Convert async test methods.
+        if asyncio.iscoroutinefunction(testMethod):
+            setattr(self, self._testMethodName, async_to_sync(testMethod))
+    
+        if not skipped:
+            try:
+                self._pre_setup()
+            except Exception:
+                if debug:
+                    raise
+                result.addError(self, sys.exc_info())
+                return
+        if debug:
+            super().debug()
+        else:
+            super().__call__(result)
+        if not skipped:
+            try:
+>               self._post_teardown()
+
+env/lib/python3.10/site-packages/django/test/testcases.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+env/lib/python3.10/site-packages/django/test/testcases.py:1006: in _post_teardown
+    self._fixture_teardown()
+env/lib/python3.10/site-packages/django/test/testcases.py:1038: in _fixture_teardown
+    call_command('flush', verbosity=0, interactive=False,
+env/lib/python3.10/site-packages/django/core/management/__init__.py:181: in call_command
+    return command.execute(*args, **defaults)
+env/lib/python3.10/site-packages/django/core/management/base.py:398: in execute
+    output = self.handle(*args, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.core.management.commands.flush.Command object at 0x7f6dae9e0430>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+                    connection.ops.execute_sql_flush(sql_list)
+                except Exception as exc:
+>                   raise CommandError(
+                        "Database %s couldn't be flushed. Possible reasons:\n"
+                        "  * The database isn't running or isn't configured correctly.\n"
+                        "  * At least one of the expected database tables doesn't exist.\n"
+                        "  * The SQL was invalid.\n"
+                        "Hint: Look at the output of 'django-admin sqlflush'. "
+                        "That's the SQL this command wasn't able to run." % (
+                            connection.settings_dict['NAME'],
+                        )
+                    ) from exc
+E                   django.core.management.base.CommandError: Database test_posthog couldn't be flushed. Possible reasons:
+E                     * The database isn't running or isn't configured correctly.
+E                     * At least one of the expected database tables doesn't exist.
+E                     * The SQL was invalid.
+E                   Hint: Look at the output of 'django-admin sqlflush'. That's the SQL this command wasn't able to run.
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:65: CommandError
+_ ERROR at teardown of TestResiliency.test_feature_flags_v3_with_slow_db_doesnt_try_to_compute_conditions_again _
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daec1aec0>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daec1aec0>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               psycopg2.errors.FeatureNotSupported: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: FeatureNotSupported
+
+The above exception was the direct cause of the following exception:
+
+self = <django.core.management.commands.flush.Command object at 0x7f6daebfc670>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+>                   connection.ops.execute_sql_flush(sql_list)
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.postgresql.operations.DatabaseOperations object at 0x7f6dd1da51e0>
+sql_list = ['TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "p...otificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";']
+
+    def execute_sql_flush(self, sql_list):
+        """Execute a list of SQL statements to flush the database."""
+        with transaction.atomic(
+            using=self.connection.alias,
+            savepoint=self.connection.features.can_rollback_ddl,
+        ):
+            with self.connection.cursor() as cursor:
+                for sql in sql_list:
+>                   cursor.execute(sql)
+
+env/lib/python3.10/site-packages/django/db/backends/base/operations.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daec1aec0>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+
+    def execute(self, sql, params=None):
+>       return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daec1aec0>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None, many = False
+executor = <bound method CursorWrapper._execute of <django.db.backends.utils.CursorWrapper object at 0x7f6daec1aec0>>
+
+    def _execute_with_wrappers(self, sql, params, many, executor):
+        context = {'connection': self.db, 'cursor': self}
+        for wrapper in reversed(self.db.execute_wrappers):
+            executor = functools.partial(wrapper, executor)
+>       return executor(sql, params, many, context)
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daec1aec0>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daec1aec0>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+>       with self.db.wrap_database_errors:
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.utils.DatabaseErrorWrapper object at 0x7f6db022e710>
+exc_type = <class 'psycopg2.errors.FeatureNotSupported'>
+exc_value = FeatureNotSupported('cannot truncate a table referenced in a foreign key constraint\nDETAIL:  Table "ee_hook" references "posthog_user".\nHINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.\n')
+traceback = <traceback object at 0x7f6daf09db40>
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if exc_type is None:
+            return
+        for dj_exc_type in (
+                DataError,
+                OperationalError,
+                IntegrityError,
+                InternalError,
+                ProgrammingError,
+                NotSupportedError,
+                DatabaseError,
+                InterfaceError,
+                Error,
+        ):
+            db_exc_type = getattr(self.wrapper.Database, dj_exc_type.__name__)
+            if issubclass(exc_type, db_exc_type):
+                dj_exc_value = dj_exc_type(*exc_value.args)
+                # Only set the 'errors_occurred' flag for errors that may make
+                # the connection unusable.
+                if dj_exc_type not in (DataError, IntegrityError):
+                    self.wrapper.errors_occurred = True
+>               raise dj_exc_value.with_traceback(traceback) from exc_value
+
+env/lib/python3.10/site-packages/django/db/utils.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daec1aec0>
+sql = 'TRUNCATE "posthog_exportedasset", "posthog_cohortpeople", "posthog_user", "posthog_notebook", "social_auth_code", "po...notificationviewed", "posthog_annotation", "posthog_instancesetting", "posthog_actionstep", "posthog_messagingrecord";'
+params = None
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daec1aec0>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+>               return self.cursor.execute(sql)
+E               django.db.utils.NotSupportedError: cannot truncate a table referenced in a foreign key constraint
+E               DETAIL:  Table "ee_hook" references "posthog_user".
+E               HINT:  Truncate table "ee_hook" at the same time, or use TRUNCATE ... CASCADE.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:82: NotSupportedError
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_slow_db_doesnt_try_to_compute_conditions_again>
+result = <TestCaseFunction test_feature_flags_v3_with_slow_db_doesnt_try_to_compute_conditions_again>
+debug = False
+
+    def _setup_and_call(self, result, debug=False):
+        """
+        Perform the following in order: pre-setup, run test, post-teardown,
+        skipping pre/post hooks if test is set to be skipped.
+    
+        If debug=True, reraise any errors in setup and use super().debug()
+        instead of __call__() to run the test.
+        """
+        testMethod = getattr(self, self._testMethodName)
+        skipped = (
+            getattr(self.__class__, "__unittest_skip__", False) or
+            getattr(testMethod, "__unittest_skip__", False)
+        )
+    
+        # Convert async test methods.
+        if asyncio.iscoroutinefunction(testMethod):
+            setattr(self, self._testMethodName, async_to_sync(testMethod))
+    
+        if not skipped:
+            try:
+                self._pre_setup()
+            except Exception:
+                if debug:
+                    raise
+                result.addError(self, sys.exc_info())
+                return
+        if debug:
+            super().debug()
+        else:
+            super().__call__(result)
+        if not skipped:
+            try:
+>               self._post_teardown()
+
+env/lib/python3.10/site-packages/django/test/testcases.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+env/lib/python3.10/site-packages/django/test/testcases.py:1006: in _post_teardown
+    self._fixture_teardown()
+env/lib/python3.10/site-packages/django/test/testcases.py:1038: in _fixture_teardown
+    call_command('flush', verbosity=0, interactive=False,
+env/lib/python3.10/site-packages/django/core/management/__init__.py:181: in call_command
+    return command.execute(*args, **defaults)
+env/lib/python3.10/site-packages/django/core/management/base.py:398: in execute
+    output = self.handle(*args, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.core.management.commands.flush.Command object at 0x7f6daebfc670>
+options = {'allow_cascade': False, 'database': 'default', 'force_color': False, 'inhibit_post_migrate': False, ...}
+database = 'default'
+connection = <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>
+verbosity = 0, interactive = False, reset_sequences = False
+allow_cascade = False, inhibit_post_migrate = False
+
+        def handle(self, **options):
+            database = options['database']
+            connection = connections[database]
+            verbosity = options['verbosity']
+            interactive = options['interactive']
+            # The following are stealth options used by Django's internals.
+            reset_sequences = options.get('reset_sequences', True)
+            allow_cascade = options.get('allow_cascade', False)
+            inhibit_post_migrate = options.get('inhibit_post_migrate', False)
+    
+            self.style = no_style()
+    
+            # Import the 'management' module within each installed app, to register
+            # dispatcher events.
+            for app_config in apps.get_app_configs():
+                try:
+                    import_module('.management', app_config.name)
+                except ImportError:
+                    pass
+    
+            sql_list = sql_flush(self.style, connection,
+                                 reset_sequences=reset_sequences,
+                                 allow_cascade=allow_cascade)
+    
+            if interactive:
+                confirm = input("""You have requested a flush of the database.
+    This will IRREVERSIBLY DESTROY all data currently in the "%s" database,
+    and return each table to an empty state.
+    Are you sure you want to do this?
+    
+        Type 'yes' to continue, or 'no' to cancel: """ % connection.settings_dict['NAME'])
+            else:
+                confirm = 'yes'
+    
+            if confirm == 'yes':
+                try:
+                    connection.ops.execute_sql_flush(sql_list)
+                except Exception as exc:
+>                   raise CommandError(
+                        "Database %s couldn't be flushed. Possible reasons:\n"
+                        "  * The database isn't running or isn't configured correctly.\n"
+                        "  * At least one of the expected database tables doesn't exist.\n"
+                        "  * The SQL was invalid.\n"
+                        "Hint: Look at the output of 'django-admin sqlflush'. "
+                        "That's the SQL this command wasn't able to run." % (
+                            connection.settings_dict['NAME'],
+                        )
+                    ) from exc
+E                   django.core.management.base.CommandError: Database test_posthog couldn't be flushed. Possible reasons:
+E                     * The database isn't running or isn't configured correctly.
+E                     * At least one of the expected database tables doesn't exist.
+E                     * The SQL was invalid.
+E                   Hint: Look at the output of 'django-admin sqlflush'. That's the SQL this command wasn't able to run.
+
+env/lib/python3.10/site-packages/django/core/management/commands/flush.py:65: CommandError
+=================================== FAILURES ===================================
+______________ TestBlastRadius.test_user_blast_radius_with_groups ______________
+
+self = <posthog.api.test.test_feature_flag.TestBlastRadius testMethod=test_user_blast_radius_with_groups>
+
+    @snapshot_clickhouse_queries
+    def test_user_blast_radius_with_groups(self):
+        GroupTypeMapping.objects.create(team=self.team, group_type="organization", group_type_index=0)
+    
+        for i in range(10):
+            create_group(
+                team_id=self.team.pk, group_type_index=0, group_key=f"org:{i}", properties={"industry": f"{i}"}
+            )
+    
+        response = self.client.post(
+            f"/api/projects/{self.team.id}/feature_flags/user_blast_radius",
+            {
+                "condition": {
+                    "properties": [
+                        {
+                            "key": "industry",
+                            "type": "group",
+                            "value": [0, 1, 2, 3],
+                            "operator": "exact",
+                            "group_type_index": 0,
+                        }
+                    ],
+                    "rollout_percentage": 25,
+                },
+                "group_type_index": 0,
+            },
+        )
+    
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    
+        response_json = response.json()
+>       self.assertDictContainsSubset({"users_affected": 4, "total_users": 10}, response_json)
+E       AssertionError: Mismatched values: 'users_affected', expected: 4, actual: 0,'total_users', expected: 10, actual: 0
+
+posthog/api/test/test_feature_flag.py:2649: AssertionError
+_______ TestBlastRadius.test_user_blast_radius_with_groups_all_selected ________
+
+self = <posthog.api.test.test_feature_flag.TestBlastRadius testMethod=test_user_blast_radius_with_groups_all_selected>
+
+    def test_user_blast_radius_with_groups_all_selected(self):
+        GroupTypeMapping.objects.create(team=self.team, group_type="organization", group_type_index=0)
+        GroupTypeMapping.objects.create(team=self.team, group_type="company", group_type_index=1)
+    
+        for i in range(5):
+            create_group(
+                team_id=self.team.pk, group_type_index=1, group_key=f"org:{i}", properties={"industry": f"{i}"}
+            )
+    
+        response = self.client.post(
+            f"/api/projects/{self.team.id}/feature_flags/user_blast_radius",
+            {
+                "condition": {
+                    "properties": [],
+                    "rollout_percentage": 25,
+                },
+                "group_type_index": 1,
+            },
+        )
+    
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    
+        response_json = response.json()
+>       self.assertDictContainsSubset({"users_affected": 5, "total_users": 5}, response_json)
+E       AssertionError: Mismatched values: 'users_affected', expected: 5, actual: 0,'total_users', expected: 5, actual: 0
+
+posthog/api/test/test_feature_flag.py:2700: AssertionError
+___ TestBlastRadius.test_user_blast_radius_with_groups_incorrect_group_type ____
+
+self = <posthog.api.test.test_feature_flag.TestBlastRadius testMethod=test_user_blast_radius_with_groups_incorrect_group_type>
+
+    def test_user_blast_radius_with_groups_incorrect_group_type(self):
+        GroupTypeMapping.objects.create(team=self.team, group_type="organization", group_type_index=0)
+        GroupTypeMapping.objects.create(team=self.team, group_type="company", group_type_index=1)
+    
+        for i in range(10):
+            create_group(
+                team_id=self.team.pk, group_type_index=0, group_key=f"org:{i}", properties={"industry": f"{i}"}
+            )
+    
+        response = self.client.post(
+            f"/api/projects/{self.team.id}/feature_flags/user_blast_radius",
+            {
+                "condition": {
+                    "properties": [
+                        {
+                            "key": "industry",
+                            "type": "group",
+                            "value": [0, 1, 2, 3, 4],
+                            "operator": "exact",
+                            "group_type_index": 0,
+                        },
+                        {
+                            "key": "industry",
+                            "type": "group",
+                            "value": [2, 3, 4, 5, 6],
+                            "operator": "exact",
+                            "group_type_index": 0,
+                        },
+                    ],
+                    "rollout_percentage": 25,
+                },
+                "group_type_index": 1,
+            },
+        )
+    
+>       self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+E       AssertionError: 200 != 400
+
+posthog/api/test/test_feature_flag.py:2778: AssertionError
+_____ TestBlastRadius.test_user_blast_radius_with_groups_multiple_queries ______
+
+self = <posthog.api.test.test_feature_flag.TestBlastRadius testMethod=test_user_blast_radius_with_groups_multiple_queries>
+
+    @snapshot_clickhouse_queries
+    def test_user_blast_radius_with_groups_multiple_queries(self):
+        GroupTypeMapping.objects.create(team=self.team, group_type="organization", group_type_index=0)
+        GroupTypeMapping.objects.create(team=self.team, group_type="company", group_type_index=1)
+    
+        for i in range(10):
+            create_group(
+                team_id=self.team.pk, group_type_index=0, group_key=f"org:{i}", properties={"industry": f"{i}"}
+            )
+    
+        response = self.client.post(
+            f"/api/projects/{self.team.id}/feature_flags/user_blast_radius",
+            {
+                "condition": {
+                    "properties": [
+                        {
+                            "key": "industry",
+                            "type": "group",
+                            "value": [0, 1, 2, 3, 4],
+                            "operator": "exact",
+                            "group_type_index": 0,
+                        },
+                        {
+                            "key": "industry",
+                            "type": "group",
+                            "value": [2, 3, 4, 5, 6],
+                            "operator": "exact",
+                            "group_type_index": 0,
+                        },
+                    ],
+                    "rollout_percentage": 25,
+                },
+                "group_type_index": 0,
+            },
+        )
+    
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    
+        response_json = response.json()
+>       self.assertDictContainsSubset({"users_affected": 3, "total_users": 10}, response_json)
+E       AssertionError: Mismatched values: 'users_affected', expected: 3, actual: 0,'total_users', expected: 10, actual: 0
+
+posthog/api/test/test_feature_flag.py:2741: AssertionError
+_______ TestBlastRadius.test_user_blast_radius_with_groups_zero_selected _______
+
+self = <posthog.api.test.test_feature_flag.TestBlastRadius testMethod=test_user_blast_radius_with_groups_zero_selected>
+
+    def test_user_blast_radius_with_groups_zero_selected(self):
+        GroupTypeMapping.objects.create(team=self.team, group_type="organization", group_type_index=0)
+    
+        for i in range(5):
+            create_group(
+                team_id=self.team.pk, group_type_index=0, group_key=f"org:{i}", properties={"industry": f"{i}"}
+            )
+    
+        response = self.client.post(
+            f"/api/projects/{self.team.id}/feature_flags/user_blast_radius",
+            {
+                "condition": {
+                    "properties": [
+                        {"key": "industry", "type": "group", "value": [8], "operator": "exact", "group_type_index": 0}
+                    ],
+                    "rollout_percentage": 25,
+                },
+                "group_type_index": 0,
+            },
+        )
+    
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    
+        response_json = response.json()
+>       self.assertDictContainsSubset({"users_affected": 0, "total_users": 5}, response_json)
+E       AssertionError: Mismatched values: 'total_users', expected: 5, actual: 0
+
+posthog/api/test/test_feature_flag.py:2675: AssertionError
+_________ TestResiliency.test_feature_flags_v3_with_a_working_slow_db __________
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daef06410>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$YyN9jsTDsHzOyoYtQUw1Bf$J4c07vParkWAY5VvBB555Grl3GLnPz4qo/zXsGycNMU=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daef06410>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(random@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: UniqueViolation
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_a_working_slow_db>
+mock_postgres_check = <MagicMock name='is_connected' id='140109063157696'>
+
+    def test_feature_flags_v3_with_a_working_slow_db(self, mock_postgres_check):
+        self.organization = Organization.objects.create(name="test")
+        self.team = Team.objects.create(organization=self.organization)
+>       self.user = User.objects.create_and_join(self.organization, "random@test.com", "password", "first_name")
+
+posthog/api/test/test_feature_flag.py:3050: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+posthog/models/user.py:99: in create_and_join
+    user = self.create_user(email=email, password=password, first_name=first_name, **extra_fields)
+posthog/models/user.py:59: in create_user
+    user.save()
+env/lib/python3.10/site-packages/django/contrib/auth/base_user.py:67: in save
+    super().save(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/base.py:739: in save
+    self.save_base(using=using, force_insert=force_insert,
+env/lib/python3.10/site-packages/django/db/models/base.py:776: in save_base
+    updated = self._save_table(
+env/lib/python3.10/site-packages/django/db/models/base.py:881: in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+env/lib/python3.10/site-packages/django/db/models/base.py:919: in _do_insert
+    return manager._insert(
+env/lib/python3.10/site-packages/django/db/models/manager.py:85: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/query.py:1270: in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+env/lib/python3.10/site-packages/django/db/models/sql/compiler.py:1416: in execute_sql
+    cursor.execute(sql, params)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: in _execute
+    with self.db.wrap_database_errors:
+env/lib/python3.10/site-packages/django/db/utils.py:90: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daef06410>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$YyN9jsTDsHzOyoYtQUw1Bf$J4c07vParkWAY5VvBB555Grl3GLnPz4qo/zXsGycNMU=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daef06410>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               django.db.utils.IntegrityError: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(random@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: IntegrityError
+_ TestResiliency.test_feature_flags_v3_with_experience_continuity_working_slow_db _
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daf1556c0>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$6oJKjXJP4qnPcLFZNYwjyV$PgsDWpZZYbxg2dBhxwoHm9/wIdulx+XpoyU3zflVyzs=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daf1556c0>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(random12@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: UniqueViolation
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_experience_continuity_working_slow_db>
+mock_counter = <MagicMock name='FLAG_EVALUATION_ERROR_COUNTER' id='140109058945472'>
+args = (<MagicMock name='is_connected' id='140109058946288'>,)
+
+    @patch("posthog.models.feature_flag.flag_matching.FLAG_EVALUATION_ERROR_COUNTER")
+    def test_feature_flags_v3_with_experience_continuity_working_slow_db(self, mock_counter, *args):
+        self.organization = Organization.objects.create(name="test")
+        self.team = Team.objects.create(organization=self.organization)
+>       self.user = User.objects.create_and_join(self.organization, "random12@test.com", "password", "first_name")
+
+posthog/api/test/test_feature_flag.py:3323: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+posthog/models/user.py:99: in create_and_join
+    user = self.create_user(email=email, password=password, first_name=first_name, **extra_fields)
+posthog/models/user.py:59: in create_user
+    user.save()
+env/lib/python3.10/site-packages/django/contrib/auth/base_user.py:67: in save
+    super().save(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/base.py:739: in save
+    self.save_base(using=using, force_insert=force_insert,
+env/lib/python3.10/site-packages/django/db/models/base.py:776: in save_base
+    updated = self._save_table(
+env/lib/python3.10/site-packages/django/db/models/base.py:881: in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+env/lib/python3.10/site-packages/django/db/models/base.py:919: in _do_insert
+    return manager._insert(
+env/lib/python3.10/site-packages/django/db/models/manager.py:85: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/query.py:1270: in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+env/lib/python3.10/site-packages/django/db/models/sql/compiler.py:1416: in execute_sql
+    cursor.execute(sql, params)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: in _execute
+    with self.db.wrap_database_errors:
+env/lib/python3.10/site-packages/django/db/utils.py:90: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daf1556c0>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$6oJKjXJP4qnPcLFZNYwjyV$PgsDWpZZYbxg2dBhxwoHm9/wIdulx+XpoyU3zflVyzs=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daf1556c0>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               django.db.utils.IntegrityError: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(random12@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: IntegrityError
+__________ TestResiliency.test_feature_flags_v3_with_group_properties __________
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daf187a60>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$IpSF9jICBmY3RsJU0T2n0q$YqOeJ6SldQOtx+70gv659gDjyqOl7CnP8abKHqUdSLk=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daf187a60>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(random@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: UniqueViolation
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_group_properties>
+args = (<MagicMock name='is_connected' id='140109060934768'>,)
+
+    def test_feature_flags_v3_with_group_properties(self, *args):
+        self.organization = Organization.objects.create(name="test")
+        self.team = Team.objects.create(organization=self.organization)
+>       self.user = User.objects.create_and_join(self.organization, "random@test.com", "password", "first_name")
+
+posthog/api/test/test_feature_flag.py:2869: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+posthog/models/user.py:99: in create_and_join
+    user = self.create_user(email=email, password=password, first_name=first_name, **extra_fields)
+posthog/models/user.py:59: in create_user
+    user.save()
+env/lib/python3.10/site-packages/django/contrib/auth/base_user.py:67: in save
+    super().save(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/base.py:739: in save
+    self.save_base(using=using, force_insert=force_insert,
+env/lib/python3.10/site-packages/django/db/models/base.py:776: in save_base
+    updated = self._save_table(
+env/lib/python3.10/site-packages/django/db/models/base.py:881: in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+env/lib/python3.10/site-packages/django/db/models/base.py:919: in _do_insert
+    return manager._insert(
+env/lib/python3.10/site-packages/django/db/models/manager.py:85: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/query.py:1270: in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+env/lib/python3.10/site-packages/django/db/models/sql/compiler.py:1416: in execute_sql
+    cursor.execute(sql, params)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: in _execute
+    with self.db.wrap_database_errors:
+env/lib/python3.10/site-packages/django/db/utils.py:90: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daf187a60>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$IpSF9jICBmY3RsJU0T2n0q$YqOeJ6SldQOtx+70gv659gDjyqOl7CnP8abKHqUdSLk=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daf187a60>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               django.db.utils.IntegrityError: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(random@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: IntegrityError
+____ TestResiliency.test_feature_flags_v3_with_group_properties_and_slow_db ____
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae963250>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$6VfCUFEFA715DY3utPbsRL$4xN34qQYRooagXmC0A4VUxj1s30E1sjUWftL69cj5AE=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dae963250>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(randomXYZ@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: UniqueViolation
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_group_properties_and_slow_db>
+mock_counter = <MagicMock name='FLAG_EVALUATION_ERROR_COUNTER' id='140109061134400'>
+args = (<MagicMock name='is_connected' id='140109063747472'>,)
+
+    @patch("posthog.models.feature_flag.flag_matching.FLAG_EVALUATION_ERROR_COUNTER")
+    def test_feature_flags_v3_with_group_properties_and_slow_db(self, mock_counter, *args):
+        self.organization = Organization.objects.create(name="test")
+        self.team = Team.objects.create(organization=self.organization)
+>       self.user = User.objects.create_and_join(self.organization, "randomXYZ@test.com", "password", "first_name")
+
+posthog/api/test/test_feature_flag.py:3216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+posthog/models/user.py:99: in create_and_join
+    user = self.create_user(email=email, password=password, first_name=first_name, **extra_fields)
+posthog/models/user.py:59: in create_user
+    user.save()
+env/lib/python3.10/site-packages/django/contrib/auth/base_user.py:67: in save
+    super().save(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/base.py:739: in save
+    self.save_base(using=using, force_insert=force_insert,
+env/lib/python3.10/site-packages/django/db/models/base.py:776: in save_base
+    updated = self._save_table(
+env/lib/python3.10/site-packages/django/db/models/base.py:881: in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+env/lib/python3.10/site-packages/django/db/models/base.py:919: in _do_insert
+    return manager._insert(
+env/lib/python3.10/site-packages/django/db/models/manager.py:85: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/query.py:1270: in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+env/lib/python3.10/site-packages/django/db/models/sql/compiler.py:1416: in execute_sql
+    cursor.execute(sql, params)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: in _execute
+    with self.db.wrap_database_errors:
+env/lib/python3.10/site-packages/django/db/utils.py:90: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae963250>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$6VfCUFEFA715DY3utPbsRL$4xN34qQYRooagXmC0A4VUxj1s30E1sjUWftL69cj5AE=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dae963250>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               django.db.utils.IntegrityError: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(randomXYZ@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: IntegrityError
+_________ TestResiliency.test_feature_flags_v3_with_person_properties __________
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1a80>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$OOxeyr5JEIGV4ts3nMtc19$nbLJCuVPzpqYu2vmPjU+vMIz3ct/zIsP80jFUn9UGNE=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1a80>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(random@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: UniqueViolation
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_person_properties>
+mock_counter = <MagicMock name='FLAG_EVALUATION_ERROR_COUNTER' id='140109062618320'>
+args = (<MagicMock name='is_connected' id='140109062603344'>,)
+
+    @patch("posthog.models.feature_flag.flag_matching.FLAG_EVALUATION_ERROR_COUNTER")
+    def test_feature_flags_v3_with_person_properties(self, mock_counter, *args):
+        self.organization = Organization.objects.create(name="test")
+        self.team = Team.objects.create(organization=self.organization)
+>       self.user = User.objects.create_and_join(self.organization, "random@test.com", "password", "first_name")
+
+posthog/api/test/test_feature_flag.py:2965: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+posthog/models/user.py:99: in create_and_join
+    user = self.create_user(email=email, password=password, first_name=first_name, **extra_fields)
+posthog/models/user.py:59: in create_user
+    user.save()
+env/lib/python3.10/site-packages/django/contrib/auth/base_user.py:67: in save
+    super().save(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/base.py:739: in save
+    self.save_base(using=using, force_insert=force_insert,
+env/lib/python3.10/site-packages/django/db/models/base.py:776: in save_base
+    updated = self._save_table(
+env/lib/python3.10/site-packages/django/db/models/base.py:881: in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+env/lib/python3.10/site-packages/django/db/models/base.py:919: in _do_insert
+    return manager._insert(
+env/lib/python3.10/site-packages/django/db/models/manager.py:85: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/query.py:1270: in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+env/lib/python3.10/site-packages/django/db/models/sql/compiler.py:1416: in execute_sql
+    cursor.execute(sql, params)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: in _execute
+    with self.db.wrap_database_errors:
+env/lib/python3.10/site-packages/django/db/utils.py:90: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1a80>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$OOxeyr5JEIGV4ts3nMtc19$nbLJCuVPzpqYu2vmPjU+vMIz3ct/zIsP80jFUn9UGNE=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6dae9e1a80>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               django.db.utils.IntegrityError: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(random@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: IntegrityError
+_ TestResiliency.test_feature_flags_v3_with_slow_db_doesnt_try_to_compute_conditions_again _
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daebffa30>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$6AUPKGf9rNQysUb3fIF109$K6yinBVGOtzdfpKglmxahMWax7UazwNOo8VnHFVuCDg=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daebffa30>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(random@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: UniqueViolation
+
+The above exception was the direct cause of the following exception:
+
+self = <posthog.api.test.test_feature_flag.TestResiliency testMethod=test_feature_flags_v3_with_slow_db_doesnt_try_to_compute_conditions_again>
+mock_counter = <MagicMock name='FLAG_EVALUATION_ERROR_COUNTER' id='140109063406496'>
+args = (<MagicMock name='is_connected' id='140109063419984'>,)
+
+    @patch("posthog.models.feature_flag.flag_matching.FLAG_EVALUATION_ERROR_COUNTER")
+    def test_feature_flags_v3_with_slow_db_doesnt_try_to_compute_conditions_again(self, mock_counter, *args):
+        self.organization = Organization.objects.create(name="test")
+        self.team = Team.objects.create(organization=self.organization)
+>       self.user = User.objects.create_and_join(self.organization, "random@test.com", "password", "first_name")
+
+posthog/api/test/test_feature_flag.py:3133: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+posthog/models/user.py:99: in create_and_join
+    user = self.create_user(email=email, password=password, first_name=first_name, **extra_fields)
+posthog/models/user.py:59: in create_user
+    user.save()
+env/lib/python3.10/site-packages/django/contrib/auth/base_user.py:67: in save
+    super().save(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/base.py:739: in save
+    self.save_base(using=using, force_insert=force_insert,
+env/lib/python3.10/site-packages/django/db/models/base.py:776: in save_base
+    updated = self._save_table(
+env/lib/python3.10/site-packages/django/db/models/base.py:881: in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+env/lib/python3.10/site-packages/django/db/models/base.py:919: in _do_insert
+    return manager._insert(
+env/lib/python3.10/site-packages/django/db/models/manager.py:85: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+env/lib/python3.10/site-packages/django/db/models/query.py:1270: in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+env/lib/python3.10/site-packages/django/db/models/sql/compiler.py:1416: in execute_sql
+    cursor.execute(sql, params)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:66: in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:75: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+env/lib/python3.10/site-packages/django/db/backends/utils.py:79: in _execute
+    with self.db.wrap_database_errors:
+env/lib/python3.10/site-packages/django/db/utils.py:90: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <django.db.backends.utils.CursorWrapper object at 0x7f6daebffa30>
+sql = 'INSERT INTO "posthog_user" ("password", "last_login", "first_name", "last_name", "is_staff", "is_active", "date_joine...(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING "posthog_user"."id"'
+params = ('pbkdf2_sha256$260000$6AUPKGf9rNQysUb3fIF109$K6yinBVGOtzdfpKglmxahMWax7UazwNOo8VnHFVuCDg=', None, 'first_name', '', False, True, ...)
+ignored_wrapper_args = (False, {'connection': <django.db.backends.postgresql.base.DatabaseWrapper object at 0x7f6dd1ec7fd0>, 'cursor': <django.db.backends.utils.CursorWrapper object at 0x7f6daebffa30>})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+                return self.cursor.execute(sql)
+            else:
+>               return self.cursor.execute(sql, params)
+E               django.db.utils.IntegrityError: duplicate key value violates unique constraint "posthog_user_email_af269794_uniq"
+E               DETAIL:  Key (email)=(random@test.com) already exists.
+
+env/lib/python3.10/site-packages/django/db/backends/utils.py:84: IntegrityError
+--------------------------- snapshot report summary ----------------------------
+21 snapshots passed. 16 snapshots unused.
+
+Re-run pytest with --snapshot-update to delete unused snapshots.
+=========================== short test summary info ============================
+FAILED posthog/api/test/test_feature_flag.py::TestBlastRadius::test_user_blast_radius_with_groups
+FAILED posthog/api/test/test_feature_flag.py::TestBlastRadius::test_user_blast_radius_with_groups_all_selected
+FAILED posthog/api/test/test_feature_flag.py::TestBlastRadius::test_user_blast_radius_with_groups_incorrect_group_type
+FAILED posthog/api/test/test_feature_flag.py::TestBlastRadius::test_user_blast_radius_with_groups_multiple_queries
+FAILED posthog/api/test/test_feature_flag.py::TestBlastRadius::test_user_blast_radius_with_groups_zero_selected
+FAILED posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_a_working_slow_db
+FAILED posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_experience_continuity_working_slow_db
+FAILED posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_group_properties
+FAILED posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_group_properties_and_slow_db
+FAILED posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_person_properties
+FAILED posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_slow_db_doesnt_try_to_compute_conditions_again
+ERROR posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_a_working_slow_db
+ERROR posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_experience_continuity_working_slow_db
+ERROR posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_group_properties
+ERROR posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_group_properties_and_slow_db
+ERROR posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_person_properties
+ERROR posthog/api/test/test_feature_flag.py::TestResiliency::test_feature_flags_v3_with_slow_db_doesnt_try_to_compute_conditions_again
+=================== 11 failed, 57 passed, 6 errors in 33.73s ===================

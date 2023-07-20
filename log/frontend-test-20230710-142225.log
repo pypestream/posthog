@@ -1,0 +1,34 @@
+
+> posthog@0.0.0 test:unit /workspaces/posthog
+> jest --testPathPattern=frontend/
+
+jest-haste-map: duplicate manual mock found: lifecycle
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/lifecycle.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/lifecycle.json
+
+jest-haste-map: duplicate manual mock found: retention
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/retention.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/retention.json
+
+jest-haste-map: duplicate manual mock found: stickiness
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/stickiness.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/stickiness.json
+
+jest-haste-map: duplicate manual mock found: trendsPie
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/trendsPie.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/trendsPie.json
+
+jest-haste-map: duplicate manual mock found: trendsTable
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/trendsTable.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/trendsTable.json
+
+jest-haste-map: duplicate manual mock found: trendsWorldMap
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/trendsWorldMap.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/trendsWorldMap.json
+

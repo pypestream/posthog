@@ -1,0 +1,81 @@
+/etc/apt/trusted.gpg
+--------------------
+pub   dsa1024 2007-03-08 [SC]
+      4CCA 1EAF 950C EE4A B839  76DC A040 830F 7FAC 5991
+uid           [ unknown] Google, Inc. Linux Package Signing Key <linux-packages-keymaster@google.com>
+sub   elg2048 2007-03-08 [E]
+
+pub   rsa4096 2016-04-12 [SC]
+      EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796
+uid           [ unknown] Google Inc. (Linux Packages Signing Authority) <linux-packages-keymaster@google.com>
+sub   rsa4096 2021-10-26 [S] [expires: 2024-10-25]
+sub   rsa4096 2023-02-15 [S] [expires: 2026-02-14]
+
+/etc/apt/trusted.gpg.d/debian-archive-bookworm-automatic.gpg
+------------------------------------------------------------
+pub   rsa4096 2023-01-21 [SC] [expires: 2031-01-19]
+      B8B8 0B5B 623E AB6A D877  5C45 B7C5 D7D6 3509 47F8
+uid           [ unknown] Debian Archive Automatic Signing Key (12/bookworm) <ftpmaster@debian.org>
+sub   rsa4096 2023-01-21 [S] [expires: 2031-01-19]
+
+/etc/apt/trusted.gpg.d/debian-archive-bookworm-security-automatic.gpg
+---------------------------------------------------------------------
+pub   rsa4096 2023-01-21 [SC] [expires: 2031-01-19]
+      05AB 9034 0C0C 5E79 7F44  A8C8 254C F3B5 AEC0 A8F0
+uid           [ unknown] Debian Security Archive Automatic Signing Key (12/bookworm) <ftpmaster@debian.org>
+sub   rsa4096 2023-01-21 [S] [expires: 2031-01-19]
+
+/etc/apt/trusted.gpg.d/debian-archive-bookworm-stable.gpg
+---------------------------------------------------------
+pub   ed25519 2023-01-23 [SC] [expires: 2031-01-21]
+      4D64 FEC1 19C2 0290 67D6  E791 F8D2 585B 8783 D481
+uid           [ unknown] Debian Stable Release Key (12/bookworm) <debian-release@lists.debian.org>
+
+/etc/apt/trusted.gpg.d/debian-archive-bullseye-automatic.gpg
+------------------------------------------------------------
+pub   rsa4096 2021-01-17 [SC] [expires: 2029-01-15]
+      1F89 983E 0081 FDE0 18F3  CC96 73A4 F27B 8DD4 7936
+uid           [ unknown] Debian Archive Automatic Signing Key (11/bullseye) <ftpmaster@debian.org>
+sub   rsa4096 2021-01-17 [S] [expires: 2029-01-15]
+
+/etc/apt/trusted.gpg.d/debian-archive-bullseye-security-automatic.gpg
+---------------------------------------------------------------------
+pub   rsa4096 2021-01-17 [SC] [expires: 2029-01-15]
+      AC53 0D52 0F2F 3269 F5E9  8313 A484 4904 4AAD 5C5D
+uid           [ unknown] Debian Security Archive Automatic Signing Key (11/bullseye) <ftpmaster@debian.org>
+sub   rsa4096 2021-01-17 [S] [expires: 2029-01-15]
+
+/etc/apt/trusted.gpg.d/debian-archive-bullseye-stable.gpg
+---------------------------------------------------------
+pub   rsa4096 2021-02-13 [SC] [expires: 2029-02-11]
+      A428 5295 FC7B 1A81 6000  62A9 605C 66F0 0D6C 9793
+uid           [ unknown] Debian Stable Release Key (11/bullseye) <debian-release@lists.debian.org>
+
+/etc/apt/trusted.gpg.d/debian-archive-buster-automatic.gpg
+----------------------------------------------------------
+pub   rsa4096 2019-04-14 [SC] [expires: 2027-04-12]
+      80D1 5823 B7FD 1561 F9F7  BCDD DC30 D7C2 3CBB ABEE
+uid           [ unknown] Debian Archive Automatic Signing Key (10/buster) <ftpmaster@debian.org>
+sub   rsa4096 2019-04-14 [S] [expires: 2027-04-12]
+
+/etc/apt/trusted.gpg.d/debian-archive-buster-security-automatic.gpg
+-------------------------------------------------------------------
+pub   rsa4096 2019-04-14 [SC] [expires: 2027-04-12]
+      5E61 B217 265D A980 7A23  C5FF 4DFA B270 CAA9 6DFA
+uid           [ unknown] Debian Security Archive Automatic Signing Key (10/buster) <ftpmaster@debian.org>
+sub   rsa4096 2019-04-14 [S] [expires: 2027-04-12]
+
+/etc/apt/trusted.gpg.d/debian-archive-buster-stable.gpg
+-------------------------------------------------------
+pub   rsa4096 2019-02-05 [SC] [expires: 2027-02-03]
+      6D33 866E DD8F FA41 C014  3AED DCC9 EFBF 77E1 1517
+uid           [ unknown] Debian Stable Release Key (10/buster) <debian-release@lists.debian.org>
+
+/etc/apt/trusted.gpg.d/google-chrome.gpg
+----------------------------------------
+pub   rsa4096 2016-04-12 [SC]
+      EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796
+uid           [ unknown] Google Inc. (Linux Packages Signing Authority) <linux-packages-keymaster@google.com>
+sub   rsa4096 2021-10-26 [S] [expires: 2024-10-25]
+sub   rsa4096 2023-02-15 [S] [expires: 2026-02-14]
+

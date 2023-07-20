@@ -1,0 +1,87 @@
+# This file contains functions that are useful to load into your shell for development
+# Usage: source bin/dev-shell 
+
+
+
+#### pytest utility functions ##################################################
+# These were created because the pytest --last-failed command was not working
+# so these allow you to run a list of tests that failed from any pytest log file
+# like so: 
+#   pytest_extract_failed pytest.log | pytest_run_list
+# or:
+#   pytest_extract_failed pytest.log > test_list 
+#   pytest_run_list < test_list
+################################################################################
+
+function pytest_extract_failed {
+    # Extract failed test names from a pytest log file
+    # Check if a log file was provided
+    if [ $# -eq 0 ]; then
+        echo "Usage: $0 pytest_output_file"
+        return 1
+    fi
+
+    local log_file=$1
+
+    # Extract failed test names and print them one per line
+    grep -oE "FAILED (\S*)" "$log_file" --text | awk -F "::" '{print $NF}'
+}
+
+function pytest_run_list {
+    # Run a list of tests from STDIN
+    # Usage: pytest_run_list < test_list_file
+
+    # Read test names from STDIN into an array
+    local tests=()
+    while IFS= read -r line; do
+        tests+=("$line")
+    done
+
+    # Count the number of tests
+    local num_tests=${#tests[@]}
+    echo "Number of tests to run: $num_tests"
+
+    # Construct the pytest command
+    local test_command=$(printf "%s or " "${tests[@]}")
+    test_command=${test_command%or }
+
+    # echo "pytest command to run:"
+    # echo "pytest -k \"$test_command\""
+
+    # Run the pytest command
+    pytest -k "$test_command"
+}
+
+################################################################################
+
+
+function cluster_start {
+    docker compose -f docker-compose.dev.yml up
+}
+
+function cluster_stop {
+    docker compose -f docker-compose.dev.yml up
+}
+
+function utc_timestamp {
+    date -u +%Y%m%d-%H%M%S
+}
+
+function test_backend {
+    logfile=log/$(utc_timestamp)-pytest.log
+    echo "Running backend tests, logging to $logfile..."
+    pytest 2>&1 | tee $logfile
+}
+
+function test_frontend {
+    logfile=log/$(utc_timestamp)-frontend.log
+    echo "Running frontend tests, logging to $logfile..."
+    pnpm test:unit 2>&1 | tee $logfile
+}
+
+function test_e2e {
+    logfile=log/$(utc_timestamp)-e2e.log
+    echo "Running End-to-end tests, logging to $logfile..."
+    bin/e2e-test-runner 2>&1 | tee $logfile
+}
+

@@ -1,0 +1,1639 @@
+
+> posthog@0.0.0 test:unit /workspaces/posthog
+> jest --testPathPattern=frontend/
+
+jest-haste-map: duplicate manual mock found: lifecycle
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/lifecycle.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/lifecycle.json
+
+jest-haste-map: duplicate manual mock found: stickiness
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/stickiness.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/stickiness.json
+
+jest-haste-map: duplicate manual mock found: retention
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/retention.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/retention.json
+
+jest-haste-map: duplicate manual mock found: trendsPie
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/trendsPie.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/trendsPie.json
+
+jest-haste-map: duplicate manual mock found: trendsTable
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/trendsTable.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/trendsTable.json
+
+jest-haste-map: duplicate manual mock found: trendsWorldMap
+  The following files share their name; please delete one of them:
+    * <rootDir>/scenes/insights/__mocks__/trendsWorldMap.json
+    * <rootDir>/lib/components/Cards/InsightCard/__mocks__/trendsWorldMap.json
+
+PASS frontend/src/queries/nodes/InsightQuery/utils/filtersToQueryNode.test.ts (7.721 s)
+PASS frontend/src/lib/utils.test.ts (7.999 s)
+PASS frontend/src/scenes/session-recordings/playlist/sessionRecordingsListLogic.test.ts
+  ● Console
+
+    console.warn
+      [MSW] Warning: captured a request without a matching request handler:
+      
+        • POST http://localhost/api/projects/997/query/
+      
+      If you still wish to intercept this unhandled request, please create a request handler for it.
+      Read more: https://mswjs.io/docs/getting-started/mocks
+
+      at Object.warn (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/internal/devUtils.ts:17:11)
+      at applyStrategy (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:208:18)
+      at onUnhandledRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:233:3)
+      at handleRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/handleRequest.ts:80:5)
+      at ../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/node/SetupServerApi.ts:65:24
+
+    console.warn
+      [MSW] Warning: captured a request without a matching request handler:
+      
+        • POST http://localhost/api/projects/997/query/
+      
+      If you still wish to intercept this unhandled request, please create a request handler for it.
+      Read more: https://mswjs.io/docs/getting-started/mocks
+
+      at Object.warn (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/internal/devUtils.ts:17:11)
+      at applyStrategy (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:208:18)
+      at onUnhandledRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:233:3)
+      at handleRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/handleRequest.ts:80:5)
+      at ../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/node/SetupServerApi.ts:65:24
+
+    console.error
+      Error: Error: connect ECONNREFUSED ::1:80
+          at Object.dispatchError (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/xhr-utils.js:63:19)
+          at Request.<anonymous> (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:655:18)
+          at Request.emit (node:events:525:35)
+          at NodeClientRequest.<anonymous> (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/helpers/http-request.js:121:14)
+          at NodeClientRequest.emit (node:events:513:28)
+          at NodeClientRequest.Object.<anonymous>.NodeClientRequest.emit (/workspaces/posthog/node_modules/.pnpm/@mswjs+interceptors@0.17.6/node_modules/@mswjs/interceptors/src/interceptors/ClientRequest/NodeClientRequest.ts:299:22)
+          at /workspaces/posthog/node_modules/.pnpm/@mswjs+interceptors@0.17.6/node_modules/@mswjs/interceptors/src/interceptors/ClientRequest/NodeClientRequest.ts:190:14 {
+        type: 'XMLHttpRequest'
+      }
+
+      at VirtualConsole.<anonymous> (../../node_modules/.pnpm/jest-environment-jsdom@29.3.1/node_modules/jest-environment-jsdom/build/index.js:60:23)
+      at Object.dispatchError (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/xhr-utils.js:66:53)
+      at Request.<anonymous> (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:655:18)
+      at NodeClientRequest.<anonymous> (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/helpers/http-request.js:121:14)
+      at NodeClientRequest.Object.<anonymous>.NodeClientRequest.emit (../../node_modules/.pnpm/@mswjs+interceptors@0.17.6/node_modules/@mswjs/interceptors/src/interceptors/ClientRequest/NodeClientRequest.ts:299:22)
+      at ../../node_modules/.pnpm/@mswjs+interceptors@0.17.6/node_modules/@mswjs/interceptors/src/interceptors/ClientRequest/NodeClientRequest.ts:190:14
+
+    console.error
+      {
+        error: TypeError: Network request failed
+            at /workspaces/posthog/node_modules/.pnpm/whatwg-fetch@3.6.2/node_modules/whatwg-fetch/dist/fetch.umd.js:535:18
+            at Timeout.task [as _onTimeout] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+            at listOnTimeout (node:internal/timers:569:17)
+            at processTimers (node:internal/timers:512:7),
+        reducerKey: 'recordingProperties',
+        actionKey: 'loadPropertiesForSessions'
+      }
+
+      89 |                 }
+      90 |                 if (!errorsSilenced) {
+    > 91 |                     console.error({ error, reducerKey, actionKey })
+         | ^
+      92 |                 }
+      93 |                 ;(window as any).Sentry?.captureException(error)
+      94 |             },
+
+      at onFailure (initKea.ts:91:1)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+PASS frontend/src/scenes/insights/summarizeInsight.test.ts (20.527 s)
+PASS frontend/src/lib/components/AnnotationsOverlay/annotationsOverlayLogic.test.ts (15.866 s)
+  ● Console
+
+    console.error
+      Error: Error: connect ECONNREFUSED ::1:80
+          at Object.dispatchError (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/xhr-utils.js:63:19)
+          at Request.<anonymous> (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:655:18)
+          at Request.emit (node:events:525:35)
+          at ClientRequest.<anonymous> (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/helpers/http-request.js:121:14)
+          at ClientRequest.emit (node:events:513:28)
+          at Socket.socketErrorListener (node:_http_client:502:9)
+          at Socket.emit (node:events:513:28)
+          at emitErrorNT (node:internal/streams/destroy:151:8)
+          at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+          at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+        type: 'XMLHttpRequest'
+      }
+
+      at VirtualConsole.<anonymous> (../../node_modules/.pnpm/jest-environment-jsdom@29.3.1/node_modules/jest-environment-jsdom/build/index.js:60:23)
+      at Object.dispatchError (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/xhr-utils.js:66:53)
+      at Request.<anonymous> (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:655:18)
+      at ClientRequest.<anonymous> (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/helpers/http-request.js:121:14)
+
+    console.error
+      Error: Error: connect ECONNREFUSED ::1:80
+          at Object.dispatchError (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/xhr-utils.js:63:19)
+          at Request.<anonymous> (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:655:18)
+          at Request.emit (node:events:525:35)
+          at ClientRequest.<anonymous> (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/helpers/http-request.js:121:14)
+          at ClientRequest.emit (node:events:513:28)
+          at Socket.socketErrorListener (node:_http_client:502:9)
+          at Socket.emit (node:events:513:28)
+          at emitErrorNT (node:internal/streams/destroy:151:8)
+          at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+          at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+        type: 'XMLHttpRequest'
+      }
+
+      at VirtualConsole.<anonymous> (../../node_modules/.pnpm/jest-environment-jsdom@29.3.1/node_modules/jest-environment-jsdom/build/index.js:60:23)
+      at Object.dispatchError (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/xhr-utils.js:66:53)
+      at Request.<anonymous> (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:655:18)
+      at ClientRequest.<anonymous> (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/helpers/http-request.js:121:14)
+
+    console.error
+      Error: Error: connect ECONNREFUSED ::1:80
+          at Object.dispatchError (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/xhr-utils.js:63:19)
+          at Request.<anonymous> (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:655:18)
+          at Request.emit (node:events:525:35)
+          at ClientRequest.<anonymous> (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/helpers/http-request.js:121:14)
+          at ClientRequest.emit (node:events:513:28)
+          at Socket.socketErrorListener (node:_http_client:502:9)
+          at Socket.emit (node:events:513:28)
+          at emitErrorNT (node:internal/streams/destroy:151:8)
+          at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+          at processTicksAndRejections (node:internal/process/task_queues:82:21) {
+        type: 'XMLHttpRequest'
+      }
+
+      at VirtualConsole.<anonymous> (../../node_modules/.pnpm/jest-environment-jsdom@29.3.1/node_modules/jest-environment-jsdom/build/index.js:60:23)
+      at Object.dispatchError (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/xhr-utils.js:66:53)
+      at Request.<anonymous> (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:655:18)
+      at ClientRequest.<anonymous> (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/helpers/http-request.js:121:14)
+
+    console.error
+      {
+        error: {
+          status: 0,
+          message: TypeError: Network request failed
+              at /workspaces/posthog/node_modules/.pnpm/whatwg-fetch@3.6.2/node_modules/whatwg-fetch/dist/fetch.umd.js:535:18
+              at Timeout.task [as _onTimeout] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+              at listOnTimeout (node:internal/timers:569:17)
+              at processTimers (node:internal/timers:512:7)
+        },
+        reducerKey: 'preflight',
+        actionKey: 'loadPreflight'
+      }
+
+      89 |                 }
+      90 |                 if (!errorsSilenced) {
+    > 91 |                     console.error({ error, reducerKey, actionKey })
+         | ^
+      92 |                 }
+      93 |                 ;(window as any).Sentry?.captureException(error)
+      94 |             },
+
+      at onFailure (initKea.ts:91:1)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+    console.error
+      {
+        status: 0,
+        message: TypeError: Network request failed
+            at /workspaces/posthog/node_modules/.pnpm/whatwg-fetch@3.6.2/node_modules/whatwg-fetch/dist/fetch.umd.js:535:18
+            at Timeout.task [as _onTimeout] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+            at listOnTimeout (node:internal/timers:569:17)
+            at processTimers (node:internal/timers:512:7)
+      }
+
+      56 |                         return await api.get('api/users/@me/')
+      57 |                     } catch (error: any) {
+    > 58 |                         console.error(error)
+         | ^
+      59 |                         actions.loadUserFailure(error.message)
+      60 |                     }
+      61 |                     return null
+
+      at loadUser (scenes/userLogic.ts:58:1)
+
+PASS frontend/src/lib/components/ActivityLog/activityLogLogic.feature-flag.test.tsx (11.749 s)
+PASS frontend/src/scenes/session-recordings/player/sessionRecordingDataLogic.test.ts
+PASS frontend/src/scenes/dashboard/dashboardLogic.test.ts (26.427 s)
+PASS frontend/src/lib/components/HTMLElementsDisplay/preselectWithCSS.test.ts
+PASS frontend/src/scenes/cohorts/cohortEditLogic.test.ts (27.828 s)
+PASS frontend/src/lib/components/TaxonomicFilter/infiniteListLogic.test.ts
+PASS frontend/src/scenes/data-management/events/eventDefinitionsTableLogic.test.ts
+PASS frontend/src/scenes/funnels/funnelDataLogic.test.ts (30.673 s)
+PASS frontend/src/lib/components/ActivityLog/activityLogLogic.insight.test.tsx (7.239 s)
+  ● Console
+
+    console.error
+      Warning: An update to SeriesDisplay inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+          in SeriesDisplay (at InsightDetails.tsx:244)
+          in div (at InsightDetails.tsx:239)
+          in section (at InsightDetails.tsx:227)
+          in QuerySummary (at activityDescriptions.tsx:233)
+          in div (at activityDescriptions.tsx:232)
+
+      at printWarning (../../node_modules/.pnpm/react-dom@16.14.0_react@16.14.0/node_modules/react-dom/cjs/react-dom.development.js:88:30)
+      at error (../../node_modules/.pnpm/react-dom@16.14.0_react@16.14.0/node_modules/react-dom/cjs/react-dom.development.js:60:5)
+      at warnIfNotCurrentlyActingUpdatesInDEV (../../node_modules/.pnpm/react-dom@16.14.0_react@16.14.0/node_modules/react-dom/cjs/react-dom.development.js:23284:7)
+      at dispatchAction (../../node_modules/.pnpm/react-dom@16.14.0_react@16.14.0/node_modules/react-dom/cjs/react-dom.development.js:15656:9)
+      at handleStoreChange (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:797:25)
+      at pausedObserver (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:998:11)
+      at dispatch (../../node_modules/.pnpm/redux@4.2.0/node_modules/redux/lib/redux.js:305:7)
+      at ../../node_modules/.pnpm/kea-waitfor@0.2.1_kea@3.1.5/node_modules/kea-waitfor/src/index.ts:51:26
+      at ../../node_modules/.pnpm/kea-subscriptions@3.0.0_kea@3.1.5/node_modules/kea-subscriptions/src/index.ts:71:26
+      at ../../node_modules/.pnpm/kea-test-utils@0.2.4_kea@3.1.5/node_modules/kea-test-utils/src/plugin.ts:27:26
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1971:28)
+      at Object.logic.actions.<computed> (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+PASS frontend/src/scenes/insights/utils/cleanFilters.test.ts
+PASS frontend/src/scenes/insights/insightLogic.test.ts (31.823 s)
+  ● Console
+
+    console.error
+      {
+        error: Error: Will not override empty filters in updateInsight.
+            at updateInsight (/workspaces/posthog/frontend/src/scenes/insights/insightLogic.ts:168:1)
+            at newListeners.<computed> (/workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:144:30)
+            at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+            at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+            at Object.logic.actions.<computed> [as updateInsight] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+            at /workspaces/posthog/frontend/src/scenes/insights/insightLogic.test.ts:1035:1
+            at syncInit (/workspaces/posthog/node_modules/.pnpm/kea-test-utils@0.2.4_kea@3.1.5/node_modules/kea-test-utils/src/expect.ts:26:24)
+            at expectLogic (/workspaces/posthog/node_modules/.pnpm/kea-test-utils@0.2.4_kea@3.1.5/node_modules/kea-test-utils/src/expect.ts:34:23)
+            at Object.<anonymous> (/workspaces/posthog/frontend/src/scenes/insights/insightLogic.test.ts:1034:1)
+            at Promise.then.completed (/workspaces/posthog/node_modules/.pnpm/jest-circus@29.3.1/node_modules/jest-circus/build/utils.js:289:28)
+            at new Promise (<anonymous>)
+            at callAsyncCircusFn (/workspaces/posthog/node_modules/.pnpm/jest-circus@29.3.1/node_modules/jest-circus/build/utils.js:222:10)
+            at _callCircusTest (/workspaces/posthog/node_modules/.pnpm/jest-circus@29.3.1/node_modules/jest-circus/build/run.js:248:40)
+            at _runTest (/workspaces/posthog/node_modules/.pnpm/jest-circus@29.3.1/node_modules/jest-circus/build/run.js:184:3)
+            at _runTestsForDescribeBlock (/workspaces/posthog/node_modules/.pnpm/jest-circus@29.3.1/node_modules/jest-circus/build/run.js:86:9)
+            at _runTestsForDescribeBlock (/workspaces/posthog/node_modules/.pnpm/jest-circus@29.3.1/node_modules/jest-circus/build/run.js:81:9)
+            at _runTestsForDescribeBlock (/workspaces/posthog/node_modules/.pnpm/jest-circus@29.3.1/node_modules/jest-circus/build/run.js:81:9)
+            at run (/workspaces/posthog/node_modules/.pnpm/jest-circus@29.3.1/node_modules/jest-circus/build/run.js:26:3)
+            at runAndTransformResultsToJestFormat (/workspaces/posthog/node_modules/.pnpm/jest-circus@29.3.1/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:120:21)
+            at jestAdapter (/workspaces/posthog/node_modules/.pnpm/jest-circus@29.3.1/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+            at runTestInternal (/workspaces/posthog/node_modules/.pnpm/jest-runner@29.3.1/node_modules/jest-runner/build/runTest.js:367:16)
+            at runTest (/workspaces/posthog/node_modules/.pnpm/jest-runner@29.3.1/node_modules/jest-runner/build/runTest.js:444:34)
+            at Object.worker (/workspaces/posthog/node_modules/.pnpm/jest-runner@29.3.1/node_modules/jest-runner/build/testWorker.js:106:12),
+        reducerKey: 'insight',
+        actionKey: 'updateInsight'
+      }
+
+      89 |                 }
+      90 |                 if (!errorsSilenced) {
+    > 91 |                     console.error({ error, reducerKey, actionKey })
+         | ^
+      92 |                 }
+      93 |                 ;(window as any).Sentry?.captureException(error)
+      94 |             },
+
+      at onFailure (initKea.ts:91:1)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+PASS frontend/src/scenes/feature-flags/featureFlagLogic.test.ts (5.786 s)
+PASS frontend/src/scenes/funnels/funnelUtils.test.ts
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "TypeError: Cannot read properties of null (reading 'URL')
+        at new XMLHttpRequestImpl (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+        at Object.exports.setup (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+        at new XMLHttpRequest (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+        at $n (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+        at e.xhr (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+        at e.apply [as set] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+        at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:109:48)
+        at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+        at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+        at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+        at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+        at runNextTicks (node:internal/process/task_queues:60:5)
+        at processImmediate (node:internal/timers:447:9)".
+
+      107 |                 if (posthog) {
+      108 |                     posthog.identify(user.distinct_id)
+    > 109 |                     posthog.people.set({
+          |                                         ^
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+      112 |                         posthog_version: user.posthog_version,
+
+      at new XMLHttpRequestImpl (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+      at Object.exports.setup (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+      at new XMLHttpRequest (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+      at $n (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+      at e.xhr (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9)".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at error (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:670:25)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "{
+      error: TypeError: Cannot read properties of null (reading '_location')
+          at Window.get location [as location] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+          at Object.location [as properties] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+          at e.properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+          at e._calculate_event_properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+          at e.capture (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+          at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:120:45)
+          at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+          at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+          at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+          at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+          at runNextTicks (node:internal/process/task_queues:60:5)
+          at processImmediate (node:internal/timers:447:9),
+      reducerKey: 'user',
+      actionKey: 'loadUser'
+    }".
+
+      118 |
+      119 |                     if (user.team) {
+    > 120 |                         posthog.group('project', user.team.uuid, {
+          |                                             ^
+      121 |                             id: user.team.id,
+      122 |                             uuid: user.team.uuid,
+      123 |                             name: user.team.name,
+
+      at Window.get location [as location] (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+      at Object.location [as properties] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+      at e.properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+      at e._calculate_event_properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+      at e.capture (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+      at loadUserSuccess (scenes/userLogic.ts:120:45)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9),
+        reducerKey: 'user',
+        actionKey: 'loadUser'
+      }".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at onFailure (initKea.ts:91:29)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+PASS frontend/src/queries/nodes/DataNode/dataNodeLogic.test.ts
+PASS frontend/src/scenes/session-recordings/player/sessionRecordingPlayerLogic.test.ts
+  ● Console
+
+    console.error
+      PostHog Recording Playback Error: No snapshots loaded
+
+      478 |         loadRecordingSnapshotsFailure: () => {
+      479 |             if (Object.keys(values.sessionPlayerData.snapshotsByWindowId).length === 0) {
+    > 480 |                 console.error('PostHog Recording Playback Error: No snapshots loaded')
+          | ^
+      481 |                 actions.setErrorPlayerState(true)
+      482 |             }
+      483 |         },
+
+      at loadRecordingSnapshotsFailure (scenes/session-recordings/player/sessionRecordingPlayerLogic.ts:480:1)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadRecordingSnapshotsFailure] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:155:57
+
+PASS frontend/src/lib/logic/inAppPrompt/inAppPromptLogic.test.ts (6.472 s)
+PASS frontend/src/lib/components/DefinitionPopover/definitionPopoverLogic.test.ts (5.374 s)
+PASS frontend/src/scenes/exports/ExportsList.spec.tsx
+  ● Console
+
+    console.error
+      Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+          in ExportActionButtons (at ExportsList.tsx:216)
+          in div (at Popover.tsx:242)
+          in div (at Popover.tsx:232)
+          in div (at Popover.tsx:211)
+          in Transition (created by CSSTransition)
+          in CSSTransition (at Popover.tsx:209)
+          in FloatingPortal (at Popover.tsx:208)
+          in ForwardRef(PopoverInternal) (at LemonDropdown.tsx:46)
+          in Dropdown (at LemonButton.tsx:278)
+          in LemonButtonWithDropdown (at More.tsx:20)
+          in More (at ExportsList.tsx:214)
+          in NestedExportActionButtons (at ExportsList.spec.tsx:47)
+
+      199 |                 .then((response) => {
+      200 |                     if (response.ok) {
+    > 201 |                         setState({ loading: false, error: null })
+          | ^
+      202 |                     } else {
+      203 |                         // TODO: parse the error response.
+      204 |                         const error = new Error(response.statusText)
+
+      at printWarning (../../node_modules/.pnpm/react-dom@16.14.0_react@16.14.0/node_modules/react-dom/cjs/react-dom.development.js:88:30)
+      at error (../../node_modules/.pnpm/react-dom@16.14.0_react@16.14.0/node_modules/react-dom/cjs/react-dom.development.js:60:5)
+      at warnAboutUpdateOnUnmountedFiberInDEV (../../node_modules/.pnpm/react-dom@16.14.0_react@16.14.0/node_modules/react-dom/cjs/react-dom.development.js:23161:5)
+      at scheduleUpdateOnFiber (../../node_modules/.pnpm/react-dom@16.14.0_react@16.14.0/node_modules/react-dom/cjs/react-dom.development.js:21169:5)
+      at dispatchAction (../../node_modules/.pnpm/react-dom@16.14.0_react@16.14.0/node_modules/react-dom/cjs/react-dom.development.js:15660:5)
+      at scenes/exports/api.ts:201:1
+
+PASS frontend/src/scenes/insights/utils.test.ts
+PASS frontend/src/lib/lemon-ui/LemonCalendar/LemonCalendar.test.tsx
+PASS frontend/src/models/propertyDefinitionsModel.test.ts (7.607 s)
+PASS frontend/src/lib/components/ActivityLog/activityLogLogic.plugin.test.tsx (6.332 s)
+PASS frontend/src/scenes/events/createActionFromEvent.test.js
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "TypeError: Cannot read properties of null (reading 'URL')
+        at new XMLHttpRequestImpl (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+        at Object.exports.setup (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+        at new XMLHttpRequest (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+        at $n (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+        at e.xhr (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+        at e.apply [as set] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+        at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:109:48)
+        at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+        at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+        at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+        at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+        at runNextTicks (node:internal/process/task_queues:60:5)
+        at processImmediate (node:internal/timers:447:9)".
+
+      107 |                 if (posthog) {
+      108 |                     posthog.identify(user.distinct_id)
+    > 109 |                     posthog.people.set({
+          |                                         ^
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+      112 |                         posthog_version: user.posthog_version,
+
+      at new XMLHttpRequestImpl (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+      at Object.exports.setup (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+      at new XMLHttpRequest (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+      at $n (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+      at e.xhr (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9)".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at error (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:670:25)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "{
+      error: TypeError: Cannot read properties of null (reading '_location')
+          at Window.get location [as location] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+          at Object.location [as properties] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+          at e.properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+          at e._calculate_event_properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+          at e.capture (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+          at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:120:45)
+          at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+          at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+          at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+          at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+          at runNextTicks (node:internal/process/task_queues:60:5)
+          at processImmediate (node:internal/timers:447:9),
+      reducerKey: 'user',
+      actionKey: 'loadUser'
+    }".
+
+      118 |
+      119 |                     if (user.team) {
+    > 120 |                         posthog.group('project', user.team.uuid, {
+          |                                             ^
+      121 |                             id: user.team.id,
+      122 |                             uuid: user.team.uuid,
+      123 |                             name: user.team.name,
+
+      at Window.get location [as location] (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+      at Object.location [as properties] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+      at e.properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+      at e._calculate_event_properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+      at e.capture (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+      at loadUserSuccess (scenes/userLogic.ts:120:45)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9),
+        reducerKey: 'user',
+        actionKey: 'loadUser'
+      }".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at onFailure (initKea.ts:91:29)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+PASS frontend/src/scenes/PreflightCheck/preflightLogic.test.ts
+PASS frontend/src/queries/nodes/DataTable/dataTableLogic.test.ts (6.297 s)
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "PostHog error: Implementation error. Please turn on debug and contact support@posthog.com.".
+
+      106 |
+      107 |                 if (posthog) {
+    > 108 |                     posthog.identify(user.distinct_id)
+          |                                         ^
+      109 |                     posthog.people.set({
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at Object.apply [as critical] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:73:23)
+      at e.critical (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:283:20)
+      at loadUserSuccess (scenes/userLogic.ts:108:41)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "PostHog error: TypeError: Cannot read properties of null (reading '_location')
+        at Window.get location [as location] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+        at Object.location [as properties] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+        at e.properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+        at e._calculate_event_properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+        at e.capture (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1266:18)
+        at e.apply (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:281:22)
+        at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:108:41)
+        at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+        at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+        at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+        at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+        at runNextTicks (node:internal/process/task_queues:60:5)
+        at processImmediate (node:internal/timers:447:9)".
+
+      106 |
+      107 |                 if (posthog) {
+    > 108 |                     posthog.identify(user.distinct_id)
+          |                                         ^
+      109 |                     posthog.people.set({
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+
+      at Window.get location [as location] (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+      at Object.location [as properties] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+      at e.properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+      at e._calculate_event_properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+      at e.capture (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1266:18)
+      at e.apply (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:281:22)
+      at loadUserSuccess (scenes/userLogic.ts:108:41)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9)".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at Object.apply [as critical] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:73:23)
+      at e.critical (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:284:20)
+      at loadUserSuccess (scenes/userLogic.ts:108:41)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "TypeError: Cannot read properties of null (reading 'URL')
+        at new XMLHttpRequestImpl (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+        at Object.exports.setup (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+        at new XMLHttpRequest (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+        at $n (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+        at e.xhr (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+        at e.apply [as set] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+        at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:109:48)
+        at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+        at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+        at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+        at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+        at runNextTicks (node:internal/process/task_queues:60:5)
+        at processImmediate (node:internal/timers:447:9)".
+
+      107 |                 if (posthog) {
+      108 |                     posthog.identify(user.distinct_id)
+    > 109 |                     posthog.people.set({
+          |                                         ^
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+      112 |                         posthog_version: user.posthog_version,
+
+      at new XMLHttpRequestImpl (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+      at Object.exports.setup (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+      at new XMLHttpRequest (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+      at $n (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+      at e.xhr (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9)".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at error (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:670:25)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "{
+      error: TypeError: Cannot read properties of null (reading '_location')
+          at Window.get location [as location] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+          at Object.location [as properties] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+          at e.properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+          at e._calculate_event_properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+          at e.capture (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+          at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:120:45)
+          at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+          at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+          at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+          at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+          at runNextTicks (node:internal/process/task_queues:60:5)
+          at processImmediate (node:internal/timers:447:9),
+      reducerKey: 'user',
+      actionKey: 'loadUser'
+    }".
+
+      118 |
+      119 |                     if (user.team) {
+    > 120 |                         posthog.group('project', user.team.uuid, {
+          |                                             ^
+      121 |                             id: user.team.id,
+      122 |                             uuid: user.team.uuid,
+      123 |                             name: user.team.name,
+
+      at Window.get location [as location] (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+      at Object.location [as properties] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+      at e.properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+      at e._calculate_event_properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+      at e.capture (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+      at loadUserSuccess (scenes/userLogic.ts:120:45)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9),
+        reducerKey: 'user',
+        actionKey: 'loadUser'
+      }".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at onFailure (initKea.ts:91:1)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "TypeError: Cannot read properties of null (reading 'URL')
+        at new XMLHttpRequestImpl (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+        at Object.exports.setup (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+        at new XMLHttpRequest (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+        at $n (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+        at e.xhr (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+        at e.apply [as set] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+        at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:109:48)
+        at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+        at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+        at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+        at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+        at runNextTicks (node:internal/process/task_queues:60:5)
+        at processImmediate (node:internal/timers:447:9)".
+
+      107 |                 if (posthog) {
+      108 |                     posthog.identify(user.distinct_id)
+    > 109 |                     posthog.people.set({
+          |                                         ^
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+      112 |                         posthog_version: user.posthog_version,
+
+      at new XMLHttpRequestImpl (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+      at Object.exports.setup (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+      at new XMLHttpRequest (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+      at $n (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+      at e.xhr (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9)".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at error (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:670:25)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "{
+      error: TypeError: Cannot read properties of null (reading '_location')
+          at Window.get location [as location] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+          at Object.location [as properties] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+          at e.properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+          at e._calculate_event_properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+          at e.capture (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+          at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:120:45)
+          at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+          at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+          at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+          at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+          at runNextTicks (node:internal/process/task_queues:60:5)
+          at processImmediate (node:internal/timers:447:9),
+      reducerKey: 'user',
+      actionKey: 'loadUser'
+    }".
+
+      118 |
+      119 |                     if (user.team) {
+    > 120 |                         posthog.group('project', user.team.uuid, {
+          |                                             ^
+      121 |                             id: user.team.id,
+      122 |                             uuid: user.team.uuid,
+      123 |                             name: user.team.name,
+
+      at Window.get location [as location] (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+      at Object.location [as properties] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+      at e.properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+      at e._calculate_event_properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+      at e.capture (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+      at loadUserSuccess (scenes/userLogic.ts:120:45)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9),
+        reducerKey: 'user',
+        actionKey: 'loadUser'
+      }".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at onFailure (initKea.ts:91:1)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "TypeError: Cannot read properties of null (reading 'URL')
+        at new XMLHttpRequestImpl (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+        at Object.exports.setup (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+        at new XMLHttpRequest (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+        at $n (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+        at e.xhr (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+        at e.apply [as set] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+        at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:109:48)
+        at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+        at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+        at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+        at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+        at runNextTicks (node:internal/process/task_queues:60:5)
+        at processImmediate (node:internal/timers:447:9)".
+
+      107 |                 if (posthog) {
+      108 |                     posthog.identify(user.distinct_id)
+    > 109 |                     posthog.people.set({
+          |                                         ^
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+      112 |                         posthog_version: user.posthog_version,
+
+      at new XMLHttpRequestImpl (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+      at Object.exports.setup (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+      at new XMLHttpRequest (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+      at $n (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+      at e.xhr (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9)".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at error (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:670:25)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "{
+      error: TypeError: Cannot read properties of null (reading '_location')
+          at Window.get location [as location] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+          at Object.location [as properties] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+          at e.properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+          at e._calculate_event_properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+          at e.capture (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+          at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:120:45)
+          at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+          at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+          at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+          at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+          at runNextTicks (node:internal/process/task_queues:60:5)
+          at processImmediate (node:internal/timers:447:9),
+      reducerKey: 'user',
+      actionKey: 'loadUser'
+    }".
+
+      118 |
+      119 |                     if (user.team) {
+    > 120 |                         posthog.group('project', user.team.uuid, {
+          |                                             ^
+      121 |                             id: user.team.id,
+      122 |                             uuid: user.team.uuid,
+      123 |                             name: user.team.name,
+
+      at Window.get location [as location] (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+      at Object.location [as properties] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+      at e.properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+      at e._calculate_event_properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+      at e.capture (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+      at loadUserSuccess (scenes/userLogic.ts:120:45)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9),
+        reducerKey: 'user',
+        actionKey: 'loadUser'
+      }".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at onFailure (initKea.ts:91:1)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "TypeError: Cannot read properties of null (reading 'URL')
+        at new XMLHttpRequestImpl (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+        at Object.exports.setup (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+        at new XMLHttpRequest (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+        at $n (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+        at e.xhr (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+        at e.apply [as set] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+        at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:109:48)
+        at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+        at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+        at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+        at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+        at runNextTicks (node:internal/process/task_queues:60:5)
+        at processImmediate (node:internal/timers:447:9)".
+
+      107 |                 if (posthog) {
+      108 |                     posthog.identify(user.distinct_id)
+    > 109 |                     posthog.people.set({
+          |                                         ^
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+      112 |                         posthog_version: user.posthog_version,
+
+      at new XMLHttpRequestImpl (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+      at Object.exports.setup (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+      at new XMLHttpRequest (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+      at $n (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+      at e.xhr (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9)".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at error (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:670:25)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "{
+      error: TypeError: Cannot read properties of null (reading '_location')
+          at Window.get location [as location] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+          at Object.location [as properties] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+          at e.properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+          at e._calculate_event_properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+          at e.capture (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+          at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:120:45)
+          at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+          at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+          at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+          at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+          at runNextTicks (node:internal/process/task_queues:60:5)
+          at processImmediate (node:internal/timers:447:9),
+      reducerKey: 'user',
+      actionKey: 'loadUser'
+    }".
+
+      118 |
+      119 |                     if (user.team) {
+    > 120 |                         posthog.group('project', user.team.uuid, {
+          |                                             ^
+      121 |                             id: user.team.id,
+      122 |                             uuid: user.team.uuid,
+      123 |                             name: user.team.name,
+
+      at Window.get location [as location] (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+      at Object.location [as properties] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+      at e.properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+      at e._calculate_event_properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+      at e.capture (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+      at loadUserSuccess (scenes/userLogic.ts:120:45)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9),
+        reducerKey: 'user',
+        actionKey: 'loadUser'
+      }".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at onFailure (initKea.ts:91:1)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+PASS frontend/src/scenes/saved-insights/savedInsightsLogic.test.ts (8.707 s)
+PASS frontend/src/lib/components/TaxonomicFilter/taxonomicFilterLogic.test.ts (5.013 s)
+PASS frontend/src/scenes/data-management/properties/propertyDefinitionsTableLogic.test.ts
+PASS frontend/src/scenes/funnels/funnelPropertyCorrelationLogic.test.ts
+PASS frontend/src/scenes/billing/billing-utils.spec.ts
+PASS frontend/src/scenes/session-recordings/saved-playlists/savedSessionRecordingPlaylistsLogic.test.ts (5.052 s)
+PASS frontend/src/lib/components/AuthorizedUrlList/authorizedUrlListLogic.test.ts
+  ● Console
+
+    console.warn
+      [MSW] Warning: captured a request without a matching request handler:
+      
+        • PATCH http://localhost/api/projects/997/
+      
+      If you still wish to intercept this unhandled request, please create a request handler for it.
+      Read more: https://mswjs.io/docs/getting-started/mocks
+
+      at Object.warn (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/internal/devUtils.ts:17:11)
+      at applyStrategy (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:208:18)
+      at onUnhandledRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:233:3)
+      at handleRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/handleRequest.ts:80:5)
+      at ../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/node/SetupServerApi.ts:65:24
+
+PASS frontend/src/scenes/persons/PersonHeader.test.ts
+PASS frontend/src/scenes/persons/personsLogic.test.ts
+PASS frontend/src/scenes/insights/insightDataLogic.test.ts
+PASS frontend/src/scenes/experiments/experimentLogic.test.ts
+PASS frontend/src/scenes/session-recordings/playlist/playlistUtils.test.ts
+PASS frontend/src/scenes/trends/trendsDataLogic.test.ts
+PASS frontend/src/scenes/dashboard/dashboards/dashboardsLogic.test.ts
+PASS frontend/src/scenes/dashboard/dashboardLogic.queryCancellation.test.ts (10.513 s)
+PASS frontend/src/scenes/exports/CreateExport.spec.tsx
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "TypeError: Cannot read properties of null (reading 'URL')
+        at new XMLHttpRequestImpl (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+        at Object.exports.setup (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+        at new XMLHttpRequest (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+        at $n (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+        at e.xhr (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+        at e.apply [as set] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+        at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:109:48)
+        at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+        at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+        at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+        at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+        at runNextTicks (node:internal/process/task_queues:60:5)
+        at processImmediate (node:internal/timers:447:9)".
+
+      107 |                 if (posthog) {
+      108 |                     posthog.identify(user.distinct_id)
+    > 109 |                     posthog.people.set({
+          |                                         ^
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+      112 |                         posthog_version: user.posthog_version,
+
+      at new XMLHttpRequestImpl (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+      at Object.exports.setup (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+      at new XMLHttpRequest (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+      at $n (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+      at e.xhr (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9)".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at error (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:670:25)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "{
+      error: TypeError: Cannot read properties of null (reading '_location')
+          at Window.get location [as location] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+          at Object.location [as properties] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+          at e.properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+          at e._calculate_event_properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+          at e.capture (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+          at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:120:45)
+          at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+          at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+          at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+          at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+          at runNextTicks (node:internal/process/task_queues:60:5)
+          at processImmediate (node:internal/timers:447:9),
+      reducerKey: 'user',
+      actionKey: 'loadUser'
+    }".
+
+      118 |
+      119 |                     if (user.team) {
+    > 120 |                         posthog.group('project', user.team.uuid, {
+          |                                             ^
+      121 |                             id: user.team.id,
+      122 |                             uuid: user.team.uuid,
+      123 |                             name: user.team.name,
+
+      at Window.get location [as location] (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+      at Object.location [as properties] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+      at e.properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+      at e._calculate_event_properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+      at e.capture (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+      at loadUserSuccess (scenes/userLogic.ts:120:45)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9),
+        reducerKey: 'user',
+        actionKey: 'loadUser'
+      }".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at onFailure (initKea.ts:91:29)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+PASS frontend/src/lib/components/ActivityLog/activityLogLogic.test.tsx
+PASS frontend/src/scenes/insights/InsightNav/insightNavLogic.test.ts
+PASS frontend/src/scenes/funnels/funnelPersonsModalLogic.test.ts (5.82 s)
+PASS frontend/src/scenes/session-recordings/player/playerSettingsLogic.test.ts
+FAIL frontend/src/lib/api.test.ts
+  ● Test suite failed to run
+
+    A jest worker process (pid=67786) was terminated by another process: signal=SIGTERM, exitCode=null. Operating system logs may contain more information on why this occurred.
+
+      at ChildProcessWorker._onExit (../../node_modules/.pnpm/jest-worker@29.3.1/node_modules/jest-worker/build/workers/ChildProcessWorker.js:366:23)
+
+PASS frontend/src/scenes/insights/filters/BreakdownFilter/taxonomicBreakdownFilterLogic.test.ts
+PASS frontend/src/lib/components/ActivityLog/activityLogLogic.notebook.test.tsx
+PASS frontend/src/scenes/insights/views/InsightsTable/insightsTableDataLogic.test.ts
+PASS frontend/src/scenes/funnels/funnelCorrelationFeedbackLogic.test.ts
+PASS frontend/src/scenes/sceneLogic.test.tsx
+PASS frontend/src/queries/query.test.ts
+PASS frontend/src/scenes/organization/Settings/VerifiedDomains/verifiedDomainsLogic.test.ts
+PASS frontend/src/queries/nodes/DataNode/dataNodeLogic.queryCancellation.test.ts
+  ● Console
+
+    console.error
+      {
+        error: DOMException { queryId: 'uuid-first' },
+        reducerKey: 'response',
+        actionKey: 'loadData'
+      }
+
+      89 |                 }
+      90 |                 if (!errorsSilenced) {
+    > 91 |                     console.error({ error, reducerKey, actionKey })
+         |                             ^
+      92 |                 }
+      93 |                 ;(window as any).Sentry?.captureException(error)
+      94 |             },
+
+      at onFailure (initKea.ts:91:29)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+PASS frontend/src/lib/components/DateFilter/dateFilterLogic.test.ts
+PASS frontend/src/lib/components/Subscriptions/subscriptionsLogic.test.ts
+PASS frontend/src/scenes/session-recordings/filters/DurationFilter.test.ts
+PASS frontend/src/lib/components/ObjectTags/objectTagsLogic.test.ts
+PASS frontend/src/scenes/insights/filters/ActionFilter/entityFilterLogic.test.ts
+PASS frontend/src/scenes/session-recordings/playlist/sessionRecordingsListPropertiesLogic.test.ts
+PASS frontend/src/toolbar/flags/featureFlagsLogic.test.ts
+  ● Console
+
+    console.log
+      PostHog Toolbar API token expired. Clearing session.
+
+      at tokenExpired (toolbar/toolbarLogic.ts:60:1)
+
+PASS frontend/src/scenes/funnels/funnelCorrelationDetailsLogic.test.ts
+PASS frontend/src/scenes/session-recordings/player/utils/segmenter.test.ts
+PASS frontend/src/lib/components/Subscriptions/subscriptionLogic.test.ts
+  ● Console
+
+    console.warn
+      [MSW] Warning: captured a request without a matching request handler:
+      
+        • GET http://localhost/api/projects/997/integrations/
+      
+      If you still wish to intercept this unhandled request, please create a request handler for it.
+      Read more: https://mswjs.io/docs/getting-started/mocks
+
+      at Object.warn (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/internal/devUtils.ts:17:11)
+      at applyStrategy (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:208:18)
+      at onUnhandledRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:233:3)
+      at handleRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/handleRequest.ts:80:5)
+      at ../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/node/SetupServerApi.ts:65:24
+
+    console.warn
+      [MSW] Warning: captured a request without a matching request handler:
+      
+        • GET http://localhost/api/projects/997/integrations/
+      
+      If you still wish to intercept this unhandled request, please create a request handler for it.
+      Read more: https://mswjs.io/docs/getting-started/mocks
+
+      at Object.warn (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/internal/devUtils.ts:17:11)
+      at applyStrategy (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:208:18)
+      at onUnhandledRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:233:3)
+      at handleRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/handleRequest.ts:80:5)
+      at ../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/node/SetupServerApi.ts:65:24
+
+PASS frontend/src/scenes/dashboard/tileLayouts.test.ts
+PASS frontend/src/scenes/session-recordings/playlist/sessionRecordingsPlaylistLogic.test.ts
+PASS frontend/src/scenes/trends/persons-modal/peronsModalLogic.test.ts
+  ● Console
+
+    console.warn
+      [MSW] Warning: captured a request without a matching request handler:
+      
+        • GET http://localhost/api/projects/1/persons/trends/
+      
+      If you still wish to intercept this unhandled request, please create a request handler for it.
+      Read more: https://mswjs.io/docs/getting-started/mocks
+
+      at Object.warn (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/internal/devUtils.ts:17:11)
+      at applyStrategy (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:208:18)
+      at onUnhandledRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:233:3)
+      at handleRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/handleRequest.ts:80:5)
+      at ../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/node/SetupServerApi.ts:65:24
+
+PASS frontend/src/lib/lemon-ui/LemonCalendarRange/LemonCalendarRange.test.tsx
+PASS frontend/src/scenes/data-management/definition/definitionLogic.test.ts
+PASS frontend/src/lib/components/ResizableTable/columnConfiguratorLogic.test.ts
+  ● Console
+
+    console.warn
+      [MSW] Warning: captured a request without a matching request handler:
+      
+        • PATCH http://localhost/api/projects/997/
+      
+      If you still wish to intercept this unhandled request, please create a request handler for it.
+      Read more: https://mswjs.io/docs/getting-started/mocks
+
+      at Object.warn (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/internal/devUtils.ts:17:11)
+      at applyStrategy (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:208:18)
+      at onUnhandledRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:233:3)
+      at handleRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/handleRequest.ts:80:5)
+      at ../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/node/SetupServerApi.ts:65:24
+
+FAIL frontend/src/scenes/insights/insightVizDataLogic.test.ts
+  ● Test suite failed to run
+
+    A jest worker process (pid=67773) was terminated by another process: signal=SIGTERM, exitCode=null. Operating system logs may contain more information on why this occurred.
+
+      at ChildProcessWorker._onExit (../../node_modules/.pnpm/jest-worker@29.3.1/node_modules/jest-worker/build/workers/ChildProcessWorker.js:366:23)
+
+PASS frontend/src/queries/utils.test.ts
+PASS frontend/src/scenes/session-recordings/player/modal/sessionPlayerModalLogic.test.ts
+PASS frontend/src/scenes/trends/trendsLogic.test.ts
+PASS frontend/src/scenes/data-management/definition/definitionEditLogic.test.ts
+PASS frontend/src/scenes/insights/insightSceneLogic.test.ts
+PASS frontend/src/scenes/session-recordings/player/playerMetaLogic.test.ts
+PASS frontend/src/toolbar/actions/actionsLogic.test.ts
+PASS frontend/src/scenes/project-homepage/primaryDashboardModalLogic.test.ts
+PASS frontend/src/queries/nodes/DataTable/utils.test.ts
+PASS frontend/src/scenes/insights/filters/ActionFilter/renameModalLogic.test.ts
+PASS frontend/src/scenes/authentication/loginLogic.test.ts
+PASS frontend/src/scenes/feature-flags/featureFlagsLogic.test.ts
+PASS frontend/src/scenes/insights/aggregationAxisFormats.test.ts
+PASS frontend/src/scenes/organization/ConfirmOrganization/confirmOrganizationLogic.test.ts
+PASS frontend/src/lib/lemon-ui/LemonCalendar/LemonCalendarSelect.test.tsx
+PASS frontend/src/queries/nodes/DataTable/ColumnConfigurator/columnConfiguratorLogic.test.ts
+PASS frontend/src/scenes/cohorts/CohortFilters/cohortFieldLogic.test.ts (5.451 s)
+PASS frontend/src/scenes/organizationLogic.test.ts
+PASS frontend/src/lib/components/PropertyFilters/components/taxonomicPropertyFilterLogic.test.ts
+PASS frontend/src/lib/components/IntervalFilter/intervalFilterLogic.test.ts
+PASS frontend/src/layout/navigation/TopBar/announcementLogic.test.ts
+PASS frontend/src/queries/nodes/InsightQuery/utils/queryNodeToFilter.test.ts
+PASS frontend/src/lib/components/ResizableTable/tableConfigLogic.test.ts
+PASS frontend/src/scenes/session-recordings/player/inspector/playerInspectorLogic.test.ts
+  ● Console
+
+    console.warn
+      [MSW] Warning: captured a request without a matching request handler:
+      
+        • GET http://localhost/api/projects/997/session_recordings/1
+      
+      If you still wish to intercept this unhandled request, please create a request handler for it.
+      Read more: https://mswjs.io/docs/getting-started/mocks
+
+      13 |
+      14 |             if (fn(args)) {
+    > 15 |                 wrappedFn(...args)
+         | ^
+      16 |             }
+      17 |         } finally {
+      18 |             inWrap = false
+
+      at console.<computed> [as warn] (lib/utils/wrapConsole.ts:15:1)
+      at Object.warn (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/internal/devUtils.ts:17:11)
+      at applyStrategy (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:208:18)
+      at onUnhandledRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:233:3)
+      at handleRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/handleRequest.ts:80:5)
+      at ../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/node/SetupServerApi.ts:65:24
+
+    console.warn
+      [MSW] Warning: captured a request without a matching request handler:
+      
+        • GET http://localhost/api/projects/997/session_recordings/1
+      
+      If you still wish to intercept this unhandled request, please create a request handler for it.
+      Read more: https://mswjs.io/docs/getting-started/mocks
+
+      13 |
+      14 |             if (fn(args)) {
+    > 15 |                 wrappedFn(...args)
+         | ^
+      16 |             }
+      17 |         } finally {
+      18 |             inWrap = false
+
+      at console.<computed> (lib/utils/wrapConsole.ts:15:1)
+      at console.<computed> [as warn] (lib/utils/wrapConsole.ts:15:1)
+      at Object.warn (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/internal/devUtils.ts:17:11)
+      at applyStrategy (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:208:18)
+      at onUnhandledRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/request/onUnhandledRequest.ts:233:3)
+      at handleRequest (../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/utils/handleRequest.ts:80:5)
+      at ../../node_modules/.pnpm/msw@0.49.3_typescript@4.9.5/node_modules/msw/src/node/SetupServerApi.ts:65:24
+
+PASS frontend/src/scenes/dashboard/newDashboardLogic.test.tsx
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "PostHog error: Implementation error. Please turn on debug and contact support@posthog.com.".
+
+      106 |
+      107 |                 if (posthog) {
+    > 108 |                     posthog.identify(user.distinct_id)
+          |                                         ^
+      109 |                     posthog.people.set({
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at Object.apply [as critical] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:73:23)
+      at e.critical (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:283:20)
+      at loadUserSuccess (scenes/userLogic.ts:108:41)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "PostHog error: TypeError: Cannot read properties of null (reading '_location')
+        at Window.get location [as location] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+        at Object.location [as properties] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+        at e.properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+        at e._calculate_event_properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+        at e.capture (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1266:18)
+        at e.apply (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:281:22)
+        at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:108:41)
+        at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+        at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+        at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+        at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+        at runNextTicks (node:internal/process/task_queues:60:5)
+        at processImmediate (node:internal/timers:447:9)".
+
+      106 |
+      107 |                 if (posthog) {
+    > 108 |                     posthog.identify(user.distinct_id)
+          |                                         ^
+      109 |                     posthog.people.set({
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+
+      at Window.get location [as location] (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+      at Object.location [as properties] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+      at e.properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+      at e._calculate_event_properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+      at e.capture (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1266:18)
+      at e.apply (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:281:22)
+      at loadUserSuccess (scenes/userLogic.ts:108:41)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9)".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at Object.apply [as critical] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:73:23)
+      at e.critical (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:284:20)
+      at loadUserSuccess (scenes/userLogic.ts:108:41)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "TypeError: Cannot read properties of null (reading 'URL')
+        at new XMLHttpRequestImpl (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+        at Object.exports.setup (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+        at new XMLHttpRequest (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+        at $n (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+        at e.xhr (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+        at e.apply [as set] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+        at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:109:48)
+        at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+        at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+        at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+        at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+        at runNextTicks (node:internal/process/task_queues:60:5)
+        at processImmediate (node:internal/timers:447:9)".
+
+      107 |                 if (posthog) {
+      108 |                     posthog.identify(user.distinct_id)
+    > 109 |                     posthog.people.set({
+          |                                         ^
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+      112 |                         posthog_version: user.posthog_version,
+
+      at new XMLHttpRequestImpl (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+      at Object.exports.setup (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+      at new XMLHttpRequest (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+      at $n (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+      at e.xhr (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9)".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at error (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:670:25)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "{
+      error: TypeError: Cannot read properties of null (reading '_location')
+          at Window.get location [as location] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+          at Object.location [as properties] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+          at e.properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+          at e._calculate_event_properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+          at e.capture (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+          at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:120:45)
+          at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+          at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+          at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+          at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+          at runNextTicks (node:internal/process/task_queues:60:5)
+          at processImmediate (node:internal/timers:447:9),
+      reducerKey: 'user',
+      actionKey: 'loadUser'
+    }".
+
+      118 |
+      119 |                     if (user.team) {
+    > 120 |                         posthog.group('project', user.team.uuid, {
+          |                                             ^
+      121 |                             id: user.team.id,
+      122 |                             uuid: user.team.uuid,
+      123 |                             name: user.team.name,
+
+      at Window.get location [as location] (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+      at Object.location [as properties] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+      at e.properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+      at e._calculate_event_properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+      at e.capture (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+      at loadUserSuccess (scenes/userLogic.ts:120:45)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9),
+        reducerKey: 'user',
+        actionKey: 'loadUser'
+      }".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at onFailure (initKea.ts:91:29)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+PASS frontend/src/layout/navigation/Breadcrumbs/breadcrumbsLogic.test.ts
+PASS frontend/src/lib/components/DateFilter/rollingDateRangeFilterLogic.test.ts
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "TypeError: Cannot read properties of null (reading 'URL')
+        at new XMLHttpRequestImpl (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+        at Object.exports.setup (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+        at new XMLHttpRequest (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+        at $n (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+        at e.xhr (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+        at e._send_request (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+        at e.apply [as set] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+        at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:109:48)
+        at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+        at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+        at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+        at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+        at runNextTicks (node:internal/process/task_queues:60:5)
+        at processImmediate (node:internal/timers:447:9)".
+
+      107 |                 if (posthog) {
+      108 |                     posthog.identify(user.distinct_id)
+    > 109 |                     posthog.people.set({
+          |                                         ^
+      110 |                         email: user.anonymize_data ? null : user.email,
+      111 |                         realm: user.realm,
+      112 |                         posthog_version: user.posthog_version,
+
+      at new XMLHttpRequestImpl (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:111:32)
+      at Object.exports.setup (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:62:12)
+      at new XMLHttpRequest (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/living/generated/XMLHttpRequest.js:99:22)
+      at $n (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/send-request.ts:72:17)
+      at e.xhr (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:658:17)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9)".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at error (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:670:25)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:127:23)
+      at e._send_request (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-people.ts:63:25)
+      at e.apply [as set] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/gdpr-utils.ts:260:27)
+      at loadUserSuccess (scenes/userLogic.ts:109:48)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "{
+      error: TypeError: Cannot read properties of null (reading '_location')
+          at Window.get location [as location] (/workspaces/posthog/node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+          at Object.location [as properties] (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+          at e.properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+          at e._calculate_event_properties (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+          at e.capture (/workspaces/posthog/node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+          at loadUserSuccess (/workspaces/posthog/frontend/src/scenes/userLogic.ts:120:45)
+          at /workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+          at Object.dispatch (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+          at Object.logic.actions.<computed> [as loadUserSuccess] (/workspaces/posthog/node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+          at /workspaces/posthog/node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+          at runNextTicks (node:internal/process/task_queues:60:5)
+          at processImmediate (node:internal/timers:447:9),
+      reducerKey: 'user',
+      actionKey: 'loadUser'
+    }".
+
+      118 |
+      119 |                     if (user.team) {
+    > 120 |                         posthog.group('project', user.team.uuid, {
+          |                                             ^
+      121 |                             id: user.team.id,
+      122 |                             uuid: user.team.uuid,
+      123 |                             name: user.team.name,
+
+      at Window.get location [as location] (../../node_modules/.pnpm/jsdom@20.0.3/node_modules/jsdom/lib/jsdom/browser/Window.js:376:79)
+      at Object.location [as properties] (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/utils.ts:954:36)
+      at e.properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:912:38)
+      at e._calculate_event_properties (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:853:30)
+      at e.capture (../../node_modules/.pnpm/posthog-js@1.70.0/node_modules/posthog-js/src/posthog-core.ts:1322:18)
+      at loadUserSuccess (scenes/userLogic.ts:120:45)
+      at ../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1245:24
+      at Object.dispatch (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1980:19)
+      at Object.logic.actions.<computed> [as loadUserSuccess] (../../node_modules/.pnpm/kea@3.1.5_react@16.14.0/node_modules/kea/lib/index.cjs.js:1367:28)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:150:55
+      at processImmediate (../../node:internal/timers:447:9),
+        reducerKey: 'user',
+        actionKey: 'loadUser'
+      }".
+      at console.error (../../node_modules/.pnpm/@jest+console@29.3.1/node_modules/@jest/console/build/BufferedConsole.js:127:10)
+      at onFailure (initKea.ts:91:29)
+      at ../../node_modules/.pnpm/kea-loaders@3.0.0_kea@3.1.5/node_modules/kea-loaders/src/index.ts:154:34
+
+PASS frontend/src/scenes/project-homepage/projectHomepageLogic.test.ts
+PASS frontend/src/lib/components/PropertyFilters/utils.test.ts
+PASS frontend/src/scenes/session-recordings/file-playback/sessionRecordingFilePlaybackLogic.test.ts
+PASS frontend/src/scenes/paths/pathsDataLogic.test.ts
+PASS frontend/src/scenes/insights/views/Histogram/histogramLogic.test.ts
+PASS frontend/src/lib/components/ActivationSidebar/activationLogic.test.ts
+PASS frontend/src/scenes/insights/sharedUtils.test.ts
+FAIL frontend/src/lib/actionUtils.test.ts
+  ● Test suite failed to run
+
+    A jest worker process (pid=67760) was terminated by another process: signal=SIGTERM, exitCode=null. Operating system logs may contain more information on why this occurred.
+
+      at ChildProcessWorker._onExit (../../node_modules/.pnpm/jest-worker@29.3.1/node_modules/jest-worker/build/workers/ChildProcessWorker.js:366:23)
+
+PASS frontend/src/toolbar/toolbarLogic.test.ts

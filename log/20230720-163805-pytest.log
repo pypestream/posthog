@@ -1,0 +1,51 @@
+/workspaces/posthog/env/lib/python3.10/site-packages/pytest_asyncio/plugin.py:173: DeprecationWarning: You're using an outdated version of pytest. Newer releases of pytest-asyncio will not be compatible with this pytest version. Please update pytest to version 7 or later.
+  warnings.warn(
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.1
+django: settings: posthog.settings (from ini)
+rootdir: /workspaces/posthog, configfile: pytest.ini
+plugins: celery-4.4.7, flaky-3.7.0, timeout-2.1.0, env-0.6.2, cov-2.12.1, icdiff-0.5, syrupy-1.4.6, asyncio-0.20.3, Faker-17.5.0, mock-3.5.1, django-4.1.0, split-0.6.0
+asyncio: mode=strict
+collected 3798 items
+
+ee/api/test/test_action.py ....                                          [  0%]
+ee/api/test/test_authentication.py .........................             [  0%]
+ee/api/test/test_billing.py ...........                                  [  1%]
+ee/api/test/test_capture.py ....                                         [  1%]
+ee/api/test/test_dashboard.py ..................                         [  1%]
+ee/api/test/test_dashboard_collaborators.py ...........                  [  1%]
+ee/api/test/test_debug_ch_queries.py .                                   [  1%]
+ee/api/test/test_event_definition.py .............                       [  2%]
+ee/api/test/test_feature_flag.py .                                       [  2%]
+ee/api/test/test_feature_flag_role_access.py .....                       [  2%]
+ee/api/test/test_hooks.py ....                                           [  2%]
+ee/api/test/test_insight.py .................                            [  3%]
+ee/api/test/test_instance_settings.py ..                                 [  3%]
+ee/api/test/test_integration.py ...                                      [  3%]
+ee/api/test/test_license.py .......                                      [  3%]
+ee/api/test/test_organization.py ............                            [  3%]
+ee/api/test/test_organization_resource_access.py ......                  [  3%]
+ee/api/test/test_performance_events.py ........                          [  4%]
+ee/api/test/test_property_definition.py ....................             [  4%]
+ee/api/test/test_role.py .....                                           [  4%]
+ee/api/test/test_role_membership.py ...                                  [  4%]
+ee/api/test/test_session_recording_playlist.py ..........                [  5%]
+ee/api/test/test_subscription.py ....                                    [  5%]
+ee/api/test/test_tagged_item.py ......                                   [  5%]
+ee/api/test/test_team.py ................................                [  6%]
+ee/api/test/test_team_memberships.py ............................        [  6%]
+ee/api/test/test_time_to_see_data.py ..                                  [  6%]
+ee/billing/test/test_quota_limiting.py .......                           [  7%]
+ee/clickhouse/materialized_columns/test/test_analyze.py ..               [  7%]
+ee/clickhouse/materialized_columns/test/test_columns.py FFFFF            [  7%]
+ee/clickhouse/materialized_columns/test/test_query.py .                  [  7%]
+ee/clickhouse/models/test/test_action.py FEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFE [  7%]
+FEFEFEFEFEFEFE                                                           [  7%]
+ee/clickhouse/models/test/test_cohort.py FFFEFFFFFFFFEFEFEFEFFEFEFEFEFEFE [  8%]
+FEFF                                                                     [  8%]
+ee/clickhouse/models/test/test_dead_letter_queue.py FF                   [  8%]
+ee/clickhouse/models/test/test_filters.py ..F............FEFEFEFEFEFEFEFE [  9%]
+FEFEFEFFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFFEFEFEFE.FEFEFEF..             [ 10%]
+ee/clickhouse/models/test/test_property.py FE.FEFEFEFEFEFEFEFE.FEFEFEFEF [ 10%]
+F.FFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFE [ 11%]
+FEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFEFE [ 12%]

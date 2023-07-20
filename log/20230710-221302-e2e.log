@@ -1,0 +1,339 @@
+2023-07-10 22:13:02 URL: http://localhost:8123/ 200 OK
+~~~~~~~~~~~~~ dropping and creating databases ~~~~~~~~~~~~~
+NOTICE:  database "posthog_e2e_test" does not exist, skipping
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    37    0     0  100    37      0    200 --:--:-- --:--:-- --:--:--   200
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    29    0     0  100    29      0   1318 --:--:-- --:--:-- --:--:--  1318
+~~~~~~~~~~~~~ migrating databases ~~~~~~~~~~~~~
+2023-07-10 22:13.06 [warning  ] ['️WARNING! E2E_TESTING is set to `True`. This is a security vulnerability unless you are running tests.']
+System check identified some issues:
+
+WARNINGS:
+?: (axes.W001) You are using the django-axes cache handler for login attempt tracking. Your cache configuration is however invalid and will not work correctly with django-axes. This can leave security holes in your login systems as attempts are not tracked correctly. Reconfigure settings.AXES_CACHE and settings.CACHES per django-axes configuration documentation.
+Operations to perform:
+  Apply all migrations: admin, auth, axes, contenttypes, otp_static, otp_totp, posthog, sessions, social_django, two_factor
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying posthog.0001_initial_squashed_0284_improved_caching_state_idx... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying axes.0001_initial... OK
+  Applying axes.0002_auto_20151217_2044... OK
+  Applying axes.0003_auto_20160322_0929... OK
+  Applying axes.0004_auto_20181024_1538... OK
+  Applying axes.0005_remove_accessattempt_trusted... OK
+  Applying axes.0006_remove_accesslog_trusted... OK
+  Applying otp_static.0001_initial... OK
+  Applying otp_static.0002_throttling... OK
+  Applying otp_totp.0001_initial... OK
+  Applying otp_totp.0002_auto_20190420_0723... OK
+  Applying posthog.0285_capture_performance_opt_in... OK
+  Applying posthog.0286_index_insightcachingstate_lookup... OK
+  Applying posthog.0287_add_session_recording_model... OK
+  Applying posthog.0288_add_session_recording_persistence... OK
+  Applying posthog.0289_add_tags_to_feature_flags... OK
+  Applying posthog.0290_add_dashboard_templates... OK
+  Applying posthog.0291_create_person_override_model... OK
+  Applying posthog.0292_property_definitions_persons_and_groups_support... OK
+  Applying posthog.0293_property_definitions_drop_old_constraint... OK
+  Applying posthog.0294_plugin_blank_fields... OK
+  Applying posthog.0295_plugin_allow_blank_config_schema... OK
+  Applying posthog.0296_team_allow_blank_fields... OK
+  Applying posthog.0297_property_definitions_index_query... OK
+  Applying posthog.0298_add_insight_queries... OK
+  Applying posthog.0299_set_templates_global... OK
+  Applying posthog.0300_add_constraints_to_person_override... OK
+  Applying posthog.0301_organization_enforce_2fa... OK
+  Applying posthog.0302_add_user_pending_email_and_is_verified... OK
+  Applying posthog.0303_team_session_recording_version... OK
+  Applying posthog.0304_store_dashboard_template_in_db... OK
+  Applying posthog.0305_rework_person_overrides... OK
+  Applying posthog.0306_featureflag_dashboard... OK
+  Applying posthog.0307_pluginconfig_admin... OK
+  Applying posthog.0308_add_indirect_person_override_constraints... OK
+  Applying posthog.0309_team_autocapture_opt_out... OK
+  Applying posthog.0310_add_starter_dashboard_template... OK
+  Applying posthog.0311_dashboard_template_scope... OK
+  Applying posthog.0312_organization_available_product_features... OK
+  Applying posthog.0313_early_access_feature... OK
+  Applying posthog.0314_sharingconfiguration_recording... OK
+  Applying posthog.0315_notebook... OK
+  Applying posthog.0316_action_href_text_matching... OK
+  Applying posthog.0317_batch_export_models... OK
+  Applying posthog.0318_alter_earlyaccessfeature_stage... OK
+  Applying posthog.0319_user_requested_password_reset_at... OK
+  Applying posthog.0320_survey... OK
+  Applying posthog.0321_add_exception_autocapture_optin... OK
+  Applying posthog.0322_auto_20230531_1904... OK
+  Applying posthog.0323_alter_batchexportdestination_type... OK
+  Applying posthog.0324_user_has_seen_product_intro_for... OK
+  Applying posthog.0325_alter_dashboardtemplate_scope... OK
+  Applying posthog.0326_team_extra_settings... OK
+  Applying posthog.0327_alter_earlyaccessfeature_stage... OK
+  Applying posthog.0328_add_starter_feature_flag_template... OK
+  Applying posthog.0329_datawarehousecredential_datawarehousetable... OK
+  Applying posthog.0330_add_autocapture_exceptions_events_to_ignore... OK
+  Applying posthog.0331_add_missing_property_definition_index... OK
+  Applying posthog.0332_featureflag_has_enriched_analytics... OK
+  Applying posthog.0333_add_timestamp_fields_to_batch_exports... OK
+  Applying posthog.0334_add_asset_ttl... OK
+  Applying posthog.0335_alter_asyncdeletion_deletion_type... OK
+  Applying sessions.0001_initial... OK
+  Applying social_django.0001_initial... OK
+  Applying social_django.0002_add_related_name... OK
+  Applying social_django.0003_alter_email_max_length... OK
+  Applying social_django.0004_auto_20160423_0400... OK
+  Applying social_django.0005_auto_20160727_2333... OK
+  Applying social_django.0006_partial... OK
+  Applying social_django.0007_code_timestamp... OK
+  Applying social_django.0008_partial_timestamp... OK
+  Applying social_django.0009_auto_20191118_0520... OK
+  Applying social_django.0010_uid_db_index... OK
+  Applying two_factor.0001_initial... OK
+  Applying two_factor.0002_auto_20150110_0810... OK
+  Applying two_factor.0003_auto_20150817_1733... OK
+  Applying two_factor.0004_auto_20160205_1827... OK
+  Applying two_factor.0005_auto_20160224_0450... OK
+  Applying two_factor.0006_phonedevice_key_default... OK
+  Applying two_factor.0007_auto_20201201_1019... OK
+2023-07-10 22:13.40 [warning  ] ['️WARNING! E2E_TESTING is set to `True`. This is a security vulnerability unless you are running tests.']
+System check identified some issues:
+
+WARNINGS:
+?: (axes.W001) You are using the django-axes cache handler for login attempt tracking. Your cache configuration is however invalid and will not work correctly with django-axes. This can leave security holes in your login systems as attempts are not tracked correctly. Reconfigure settings.AXES_CACHE and settings.CACHES per django-axes configuration documentation.
+✅ Migration successful
+~~~~~~~~~~~~~ setting up django ~~~~~~~~~~~~~
+2023-07-10 22:15.08 [warning  ] ['️WARNING! E2E_TESTING is set to `True`. This is a security vulnerability unless you are running tests.']
+2023-07-10 22:15.08 [warning  ] ['️WARNING! E2E_TESTING is set to `True`. This is a security vulnerability unless you are running tests.']
+2023-07-10 22:15.10 [warning  ] ['️WARNING! E2E_TESTING is set to `True`. This is a security vulnerability unless you are running tests.']
+System check identified some issues:
+
+WARNINGS:
+?: (axes.W001) You are using the django-axes cache handler for login attempt tracking. Your cache configuration is however invalid and will not work correctly with django-axes. This can leave security holes in your login systems as attempts are not tracked correctly. Reconfigure settings.AXES_CACHE and settings.CACHES per django-axes configuration documentation.
+
+⚠️ setup_dev is deprecated. Use the more robust generate_demo_data command instead.
+
+Performing system checks...
+
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 1, reused 0, downloaded 0, added 0
+System check identified some issues:
+
+WARNINGS:
+?: (axes.W001) You are using the django-axes cache handler for login attempt tracking. Your cache configuration is however invalid and will not work correctly with django-axes. This can leave security holes in your login systems as attempts are not tracked correctly. Reconfigure settings.AXES_CACHE and settings.CACHES per django-axes configuration documentation.
+
+System check identified 1 issue (0 silenced).
+July 10, 2023 - 22:15:12
+Django version 3.2.19, using settings 'posthog.settings'
+Starting development server at http://127.0.0.1:8080/
+Quit the server with CONTROL-C.
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 42, reused 0, downloaded 0, added 0
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 140, reused 0, downloaded 0, added 0
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 168, reused 0, downloaded 0, added 0
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 171, reused 0, downloaded 0, added 0
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 0, downloaded 0, added 0
+../.pnpm-store/v3/tmp/dlx-1205049        | +174 +++++++++++++++++
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 1, downloaded 0, added 0
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 2, downloaded 0, added 0
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 8, downloaded 0, added 0
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 17, downloaded 4, added 0
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 22, downloaded 5, added 3
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 23, downloaded 6, added 13
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 23, downloaded 7, added 28
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 23, downloaded 7, added 30
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 24, downloaded 7, added 30
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 45, downloaded 7, added 43
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 69, downloaded 8, added 63
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 91, downloaded 9, added 86
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 119, downloaded 9, added 116
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 154, downloaded 9, added 153
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 163, downloaded 9, added 172
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 163, downloaded 10, added 172
+.../cypress@12.17.1/node_modules/cypress postinstall$ node index.js --exec install
+../.pnpm-store/v3/tmp/dlx-1205049        | Progress: resolved 174, reused 163, downloaded 11, added 174, done
+.../cypress@12.17.1/node_modules/cypress postinstall: Installing Cypress (version: 12.17.1)
+.../cypress@12.17.1/node_modules/cypress postinstall: [STARTED] Task without title.
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Downloading Cypress      0% 0s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Downloading Cypress      7% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Downloading Cypress      16% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Downloading Cypress      25% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Downloading Cypress      35% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Downloading Cypress      45% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Downloading Cypress      56% 0s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Downloading Cypress      67% 0s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Downloading Cypress      80% 0s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Downloading Cypress      93% 0s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Downloaded Cypress     
+.../cypress@12.17.1/node_modules/cypress postinstall: [SUCCESS]  Downloaded Cypress     
+.../cypress@12.17.1/node_modules/cypress postinstall: [STARTED] Task without title.
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        0% 0s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        1% 64s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        1% 65s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        1% 66s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        1% 67s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        2% 33s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        2% 34s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        2% 35s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        3% 23s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        3% 24s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        3% 26s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        3% 28s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        3% 29s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        4% 21s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        4% 22s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        4% 23s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        5% 19s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        5% 20s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        6% 17s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        7% 15s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        8% 13s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        9% 12s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        10% 11s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        11% 10s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        12% 9s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        12% 10s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        13% 9s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        14% 8s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        14% 9s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        15% 8s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        16% 8s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        17% 7s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        18% 7s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        19% 7s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        20% 6s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        21% 6s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        22% 6s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        23% 6s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        24% 5s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        25% 5s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        26% 5s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        27% 5s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        28% 5s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        29% 4s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        29% 5s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        30% 4s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        31% 4s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        32% 4s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        33% 4s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        34% 4s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        35% 4s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        36% 4s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        37% 4s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        38% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        38% 4s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        39% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        40% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        41% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        42% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        43% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        44% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        45% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        46% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        47% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        48% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        49% 3s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        50% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        51% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        52% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        53% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        54% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        55% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        56% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        57% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        58% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        59% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        60% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        61% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        62% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        63% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        64% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        65% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        66% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        67% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        68% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        69% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        70% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        71% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        72% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        72% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        73% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        74% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        75% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        76% 1s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        76% 2s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipping Cypress        100% 0s
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Unzipped Cypress       
+.../cypress@12.17.1/node_modules/cypress postinstall: [SUCCESS]  Unzipped Cypress       
+.../cypress@12.17.1/node_modules/cypress postinstall: [STARTED] Task without title.
+.../cypress@12.17.1/node_modules/cypress postinstall: [TITLE]  Finished Installation   /home/vscode/.cache/Cypress/12.17.1
+.../cypress@12.17.1/node_modules/cypress postinstall: [SUCCESS]  Finished Installation   /home/vscode/.cache/Cypress/12.17.1
+.../cypress@12.17.1/node_modules/cypress postinstall: You can now open Cypress by running: node_modules/.bin/cypress open
+.../cypress@12.17.1/node_modules/cypress postinstall: https://on.cypress.io/installing-cypress
+.../cypress@12.17.1/node_modules/cypress postinstall: Done
+The integrity of 3297 files was checked. This might have caused installation to take longer.
+It looks like this is your first time using Cypress: 12.17.1
+
+[STARTED] Task without title.
+[FAILED] Your system is missing the dependency: Xvfb
+[FAILED] 
+[FAILED] Install Xvfb and run Cypress again.
+[FAILED] 
+[FAILED] Read our documentation on dependencies for more information:
+[FAILED] 
+[FAILED] https://on.cypress.io/required-dependencies
+[FAILED] 
+[FAILED] If you are using Docker, we provide containers with all required dependencies installed.
+[FAILED] 
+[FAILED] ----------
+[FAILED] 
+[FAILED] Error: spawn Xvfb ENOENT
+[FAILED] 
+[FAILED] ----------
+[FAILED] 
+[FAILED] Platform: linux-x64 (Debian - 11)
+[FAILED] Cypress Version: 12.17.1
+Your system is missing the dependency: Xvfb
+
+Install Xvfb and run Cypress again.
+
+Read our documentation on dependencies for more information:
+
+https://on.cypress.io/required-dependencies
+
+If you are using Docker, we provide containers with all required dependencies installed.
+
+----------
+
+Error: spawn Xvfb ENOENT
+
+----------
+
+Platform: linux-x64 (Debian - 11)
+Cypress Version: 12.17.1
+ ERROR  Command failed with exit code 1: cypress open --config-file cypress.e2e.config.ts
+
+pnpm: Command failed with exit code 1: cypress open --config-file cypress.e2e.config.ts
+    at makeError (/usr/local/share/nvm/versions/node/v18.16.1/lib/node_modules/pnpm/dist/pnpm.cjs:24796:17)
+    at handlePromise (/usr/local/share/nvm/versions/node/v18.16.1/lib/node_modules/pnpm/dist/pnpm.cjs:25367:33)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.handler [as dlx] (/usr/local/share/nvm/versions/node/v18.16.1/lib/node_modules/pnpm/dist/pnpm.cjs:209900:7)
+    at async /usr/local/share/nvm/versions/node/v18.16.1/lib/node_modules/pnpm/dist/pnpm.cjs:219307:21
+    at async main (/usr/local/share/nvm/versions/node/v18.16.1/lib/node_modules/pnpm/dist/pnpm.cjs:219274:34)
+    at async runPnpm (/usr/local/share/nvm/versions/node/v18.16.1/lib/node_modules/pnpm/dist/pnpm.cjs:219529:5)
+    at async /usr/local/share/nvm/versions/node/v18.16.1/lib/node_modules/pnpm/dist/pnpm.cjs:219521:7

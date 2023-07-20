@@ -1,0 +1,74 @@
+#!/bin/bash
+
+function setup_python {
+    # if env dir does not exist
+    if [ ! -d "env" ]; then
+        echo "Creating virtual environment..."
+        python3 -m venv env
+    fi
+
+    # activate the virtual environment
+    source env/bin/activate
+
+    pip install -U pip && \
+    pip install -r requirements.txt -r requirements-dev.txt 
+
+    if [ $? -ne 0 ]; then
+        echo "FAILED to install python dependencies."
+        return 1
+    else 
+        echo "SUCCESS installing python dependencies."
+    fi
+}
+
+function install_chrome {
+    # Install chrome
+    if ! dpkg -s google-chrome-stable 2>/dev/null | grep -q 'install ok installed'; then
+        echo 'Installing google-chrome-stable...'
+
+        # Download Google's public signing key and add it to apt-key.  Idempotent.
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+
+        # Could result in duplicate entries in /etc/apt/sources.list.d/google.list
+        sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+
+        # Update the list of available packages from all configured sources
+        sudo apt-get update
+
+        # Install the stable version of Google Chrome from the newly added repository
+        sudo apt-get install google-chrome-stable
+
+    else
+        echo 'google-chrome-stable is already installed.'
+    fi
+}
+
+function install_vim {
+    # Install vim
+    if ! dpkg -s vim 2>/dev/null | grep -q 'install ok installed'; then
+        echo 'Installing vim...'
+        sudo apt-get -y install vim
+    else
+        echo 'vim is already installed.'
+    fi
+}
+
+function install_cypress_deps {
+    echo "Installing cypress dependencies..."
+    sudo apt-get -y install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev \ 
+        libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+    if $? -ne 0; then
+        echo "FAILED to install cypress dependencies."
+        return 1
+    else 
+        echo "SUCCESS installing cypress dependencies."
+    fi
+}
+
+
+
+
+setup_python
+install_chrome
+install_cypress_deps
+install_vim

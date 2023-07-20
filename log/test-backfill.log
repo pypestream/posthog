@@ -1,0 +1,13 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.1
+django: settings: posthog.settings (from ini)
+rootdir: /workspaces/posthog, configfile: pytest.ini
+plugins: celery-4.4.7, flaky-3.7.0, env-0.6.2, cov-2.12.1, icdiff-0.5, syrupy-1.4.6, asyncio-0.20.3, Faker-17.5.0, mock-3.5.1, django-4.1.0, split-0.6.0
+asyncio: mode=strict
+collected 5 items
+
+posthog/api/test/batch_exports/test_backfill.py .....                    [100%]
+
+--------------------------- snapshot report summary ----------------------------
+
+============================== 5 passed in 12.02s ==============================

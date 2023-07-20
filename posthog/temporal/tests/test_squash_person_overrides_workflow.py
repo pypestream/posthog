@@ -1165,6 +1165,7 @@ async def test_delete_squashed_person_overrides_from_postgres_with_newer_overrid
             assert version == 2
 
 
+@pytest.mark.timeout(20)
 @pytest.mark.django_db
 @pytest.mark.asyncio
 async def test_squash_person_overrides_workflow(
@@ -1214,6 +1215,7 @@ async def test_squash_person_overrides_workflow(
     assert len(rows) == 0
 
 
+@pytest.mark.timeout(20)
 @pytest.mark.django_db
 @pytest.mark.asyncio
 async def test_squash_person_overrides_workflow_with_newer_overrides(
@@ -1256,6 +1258,7 @@ async def test_squash_person_overrides_workflow_with_newer_overrides(
     assert_events_have_been_overriden(events_to_override, newer_overrides)
 
 
+@pytest.mark.timeout(20)
 @pytest.mark.django_db
 @pytest.mark.asyncio
 async def test_squash_person_overrides_workflow_with_limited_team_ids(
