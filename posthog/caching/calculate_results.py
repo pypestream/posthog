@@ -5,6 +5,7 @@ from sentry_sdk import capture_exception
 
 from posthog.caching.utils import ensure_is_date
 from posthog.clickhouse.query_tagging import tag_queries
+from posthog.hogql.errors import HogQLException
 from posthog.constants import (
     INSIGHT_FUNNELS,
     INSIGHT_PATHS,
@@ -131,9 +132,22 @@ def calculate_for_query_based_insight(
 
     # local import to avoid circular reference
     from posthog.api.query import process_query
+    from posthog.hogql.constants import DEFAULT_RETURNED_ROWS
 
-    # TODO need to properly check that hogql is enabled?
-    return cache_key, cache_type, process_query(team, insight.query, True)
+    try:
+        result = process_query(team, insight.query, DEFAULT_RETURNED_ROWS)
+    except HogQLException as e:
+        logger.warning(
+            "failed_to_process_hogql_query_for_insight_cache",
+            insight_id=insight.pk,
+            team_id=team.pk,
+            dashboard_id=dashboard.pk if dashboard else None,
+            error=str(e),
+            exc_info=True,
+        )
+        raise
+
+    return cache_key, cache_type, result
 
 
 def calculate_for_filter_based_insight(
